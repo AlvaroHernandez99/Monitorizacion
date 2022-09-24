@@ -11,43 +11,47 @@
 <body>
     <header>
         <h1><i>Página 1</i></h1>
-        <ul>
-            <li><a href="./pagina2.html">Pagina 2</a></li>
-            <li><a href="./pagina3.html">Pagina 3</a></li>
-            <li><a href="./pagina4.html">Pagina 4</a></li>
-            <li><a href="./pagina5.html">Pagina 5</a></li>
-        </ul>
+        <div class="menu-nav">
+            <ul>
+                <li><a href="./pagina2.html">Pagina 2</a></li>
+                <li><a href="./pagina3.html">Pagina 3</a></li>
+                <li><a href="./pagina4.html">Pagina 4</a></li>
+                <li><a href="./pagina5.html">Pagina 5</a></li>
+            </ul>
+        </div>    
     </header>
     <main>
         <h2><u>Formulario:</u></h2>
-        <form>
-            <fieldset>
-                <legend><strong>Datos a rellenar: </strong></legend>
-                <p><strong>Nombre del elemento: </strong><input name="nombre" type="text" placeholder="Bujía"></p>
-                <p><strong>Descripción del elemento:</strong></p><textarea name="desc" type="text" placeholder="Tira corriente" rows="5" cols="30"></textarea>
-                <p><strong>Número de serie del elemento: </strong><input name="numSer" type="text" placeholder="23445432"></p>
-                <label for="prio"><strong>Estado: </strong></label>
-                <select name="prio" id="prio">
-                    <option value="select">---</option>
-                    <option value="activo">Activo</option>
-                    <option value="inactivo">Inactivo</option>
-                </select>
-                <p><strong>Prioridad:</strong>
-                    <input type="radio" name="igual" value="alta">
-                    <label for="alta">Alta</label>
-                    <input type="radio" name="igual" value="media"> 
-                    <label for="media">Media</label>
-                    <input type="radio" name="igual" value="baja"> 
-                    <label for="baja">Baja</label>
-                </p>
-                <input type="submit" value="Enviar">
-                <input type="submit" value="Reset"> <!-- De tipo submit para que refreque la página -->
-            </fieldset>
-        </form>
+        <div class="form">
+            <form>
+                <fieldset>
+                    <legend><strong>Datos a rellenar: </strong></legend>
+                    <p><strong>Nombre del elemento: </strong><input name="nombre" type="text" placeholder="Bujía"></p>
+                    <p><strong>Descripción del elemento:</strong></p><textarea name="desc" type="text" placeholder="Tira corriente" rows="5" cols="30"></textarea>
+                    <p><strong>Número de serie del elemento: </strong><input name="numSer" type="text" placeholder="23445432"></p>
+                    <label for="prio"><strong>Estado: </strong></label>
+                    <select name="prio" id="prio">
+                        <option value="select">---</option>
+                        <option value="activo">Activo</option>
+                        <option value="inactivo">Inactivo</option>
+                    </select>
+                    <p><strong>Prioridad:</strong>
+                        <input type="radio" name="igual" value="alta">
+                        <label for="alta">Alta</label>
+                        <input type="radio" name="igual" value="media">
+                        <label for="media">Media</label>
+                        <input type="radio" name="igual" value="baja"> 
+                        <label for="baja">Baja</label>
+                    </p>
+                    <input type="submit" value="Enviar">
+                    <input type="submit" value="Reset"> <!-- De tipo submit para que refreque la página -->
+                </fieldset>
+            </form>
+        </div>
     </main>
     <footer>
         <center> <!-- En desuso pero curioso -->
-            <div>
+            <div class="footer">
                 <p class="copi">Página creada por Álvaro ® 2022 K36 </p>
                 <a href="https://infovaroblog.wordpress.com/"><img src="./img/wordpress.png" width="35" height="35"></a>
             </div>
