@@ -13,17 +13,18 @@
         <h1><i>Página 1</i></h1>
         <div class="menu-nav">
             <ul>
-                <li><a href="./pagina2.html">Pagina 2</a></li>
-                <li><a href="./pagina3.html">Pagina 3</a></li>
-                <li><a href="./pagina4.html">Pagina 4</a></li>
-                <li><a href="./pagina5.html">Pagina 5</a></li>
+                <li>Página 1</li>
+                <li><a href="./pagina2.html">Página 2</a></li>
+                <li><a href="./pagina3.html">Página 3</a></li>
+                <li><a href="./pagina4.html">Página 4</a></li>
+                <li><a href="./pagina5.html">Página 5</a></li>
             </ul>
         </div>    
     </header>
     <main>
         <h2><u>Formulario:</u></h2>
         <div class="form">
-            <form>
+            <form method="post" action="./ws/createElement.php">
                 <fieldset>
                     <legend><strong>Datos a rellenar: </strong></legend>
                     <p><strong>Nombre del elemento: </strong><input name="nombre" type="text" placeholder="Bujía"></p>
@@ -44,7 +45,7 @@
                         <label for="baja">Baja</label>
                     </p>
                     <input type="submit" value="Enviar">
-                    <input type="submit" value="Reset"> <!-- De tipo submit para que refreque la página -->
+                    <input type="submit" value="Reset"> <!-- De tipo submit para que refresque la página -->
                 </fieldset>
             </form>
         </div>
