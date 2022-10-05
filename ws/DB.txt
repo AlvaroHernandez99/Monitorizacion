@@ -1,0 +1,3 @@
+Nombre: alvaro ,Descripcion: no, le faltanaz<sdas ,Número de serie asdad ,Estado activo ,Prioridad media
+Nombre: manue ,Descripcion: no tira ,Número de serie 22323 ,Estado activo ,Prioridad alta
+Nombre: asdasd ,Descripcion: asdasd ,Número de serie asd ,Estado activo ,Prioridad alta . 
