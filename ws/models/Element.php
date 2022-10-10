@@ -1,5 +1,6 @@
 <?php
-require_once "./DWES/primera/ws/createElement.php";
+require_once "./interfaces/IToJson.php"; 
+require_once "./createElement.php";
 
 class Element implements IToJson{
     public $name;
@@ -7,6 +8,7 @@ class Element implements IToJson{
     public $serialNumber;
     public $condition; //estado 
     public $priority;
+
 
     public function __construct($name, $description, $serialNumber, $condition, $priority){
         $this->name = $name;
@@ -71,13 +73,24 @@ class Element implements IToJson{
         return $this;
     }
 
+    
     public function toJson(){
-        //
-    } 
-
-    public function mostrar(){
-        echo "name " . $_POST["nombre"] . "description " . $_POST["desc"] . "serialNumber" . $_POST["numSer"] . "condicion" . $_POST["prio"] . "prioridad" . $_POST['igual'];
+        //array creado para que se almacene la info ----> SALE POR PANTALLA,,,,,, Hacerlo en forma de array???????
+        $arrayElements = array('nombre' => $this->name, 'descripcion' =>$this->description, 'numero de serie'=>$this->serialNumber, 'estado'=>$this->condition, 'prioridad'=>$this->priority);
+        //ESTO ES LO QUE ESCRIBE AL ARCHIVO DE LA BASE DE DATOS --------- ¿¿¿¿¿¿¿¿DEBERÍA TENER UNO PARA LOS DOS?????????
+        if($writeDB = fopen("./DB.txt", "a")){ // "a", append -> para que no sobreescriba
+            fwrite($writeDB, "Nombre: " . $this->name . " ,");
+            fwrite($writeDB, "Descripcion: " . $this->description . " ,");
+            fwrite($writeDB, "Número de serie " . $this->serialNumber . " ,");
+            fwrite($writeDB, "Estado " . $this->condition . " ,");
+            fwrite($writeDB, "Prioridad " . $this->priority . " . \n");
+        }
+        fclose($writeDB);
+        echo "Los datos del elemento introducidos en la base de datos son: " . json_encode($arrayElements);
     }
 
+    public function mostrar(){
+        echo "name " . $this->name . "description " . $this->description . "serialNumber" . $this->serialNumber . "condicion" . $this->condition . "prioridad" . $this->priority;
+    }
 }
 ?>

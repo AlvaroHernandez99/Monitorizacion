@@ -1,3 +1,5 @@
-Nombre: alvaro ,Descripcion: no, le faltanaz<sdas ,Número de serie asdad ,Estado activo ,Prioridad media
-Nombre: manue ,Descripcion: no tira ,Número de serie 22323 ,Estado activo ,Prioridad alta
-Nombre: asdasd ,Descripcion: asdasd ,Número de serie asd ,Estado activo ,Prioridad alta . 
+aaaaaaaaactivomediaNombre: aaa ,Descripcion: aaaa ,Número de serie a ,Estado activo ,Prioridad media . 
+Nombre: alvaro ,Descripcion: asadasdasdsad ,Número de serie asdasdas ,Estado activo ,Prioridad alta . 
+Nombre: alvaro ,Descripcion: asadasdasdsad ,Número de serie asdasdas ,Estado activo ,Prioridad alta . 
+Nombre: No Sobreescribe ,Descripcion: en principio bien ,Número de serie está borrao ,Estado inactivo ,Prioridad baja . 
+Nombre: No Sobreescribe ,Descripcion: en principio bien ,Número de serie esta borrao ,Estado inactivo ,Prioridad baja . 
