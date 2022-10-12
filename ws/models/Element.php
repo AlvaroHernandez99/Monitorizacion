@@ -73,24 +73,27 @@ class Element implements IToJson{
         return $this;
     }
 
-    
     public function toJson(){
-        //array creado para que se almacene la info ----> SALE POR PANTALLA,,,,,, Hacerlo en forma de array???????
+        //array creado para que se almacene la info ----> SALE POR PANTALLA
         $arrayElements = array('nombre' => $this->name, 'descripcion' =>$this->description, 'numero de serie'=>$this->serialNumber, 'estado'=>$this->condition, 'prioridad'=>$this->priority);
-        //ESTO ES LO QUE ESCRIBE AL ARCHIVO DE LA BASE DE DATOS --------- ¿¿¿¿¿¿¿¿DEBERÍA TENER UNO PARA LOS DOS?????????
+        $encodeArray = json_encode($arrayElements);
+        echo "Los datos del elemento introducidos en la base de datos son: " . $encodeArray;
+
+
+        //ESTO ES LO QUE ESCRIBE AL ARCHIVO DE LA BASE DE DATOS 
         if($writeDB = fopen("./DB.txt", "a")){ // "a", append -> para que no sobreescriba
-            fwrite($writeDB, "Nombre: " . $this->name . " ,");
+            /* fwrite($writeDB, "Nombre: " . $this->name . " ,");
             fwrite($writeDB, "Descripcion: " . $this->description . " ,");
             fwrite($writeDB, "Número de serie " . $this->serialNumber . " ,");
             fwrite($writeDB, "Estado " . $this->condition . " ,");
-            fwrite($writeDB, "Prioridad " . $this->priority . " . \n");
+            fwrite($writeDB, "Prioridad " . $this->priority . " . \n"); */
+            fwrite($writeDB, $encodeArray);
         }
         fclose($writeDB);
-        echo "Los datos del elemento introducidos en la base de datos son: " . json_encode($arrayElements);
     }
 
     public function mostrar(){
         echo "name " . $this->name . "description " . $this->description . "serialNumber" . $this->serialNumber . "condicion" . $this->condition . "prioridad" . $this->priority;
-    }
+    } 
 }
 ?>
