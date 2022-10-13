@@ -78,17 +78,10 @@ class Element implements IToJson{
         $arrayElements = array('nombre' => $this->name, 'descripcion' =>$this->description, 'numero de serie'=>$this->serialNumber, 'estado'=>$this->condition, 'prioridad'=>$this->priority);
         $encodeArray = json_encode($arrayElements);
         echo "Los datos del elemento introducidos en la base de datos son: " . $encodeArray;
-
-
+        
         //ESTO ES LO QUE ESCRIBE AL ARCHIVO DE LA BASE DE DATOS 
-        if($writeDB = fopen("./DB.txt", "a")){ // "a", append -> para que no sobreescriba
-            /* fwrite($writeDB, "Nombre: " . $this->name . " ,");
-            fwrite($writeDB, "Descripcion: " . $this->description . " ,");
-            fwrite($writeDB, "Número de serie " . $this->serialNumber . " ,");
-            fwrite($writeDB, "Estado " . $this->condition . " ,");
-            fwrite($writeDB, "Prioridad " . $this->priority . " . \n"); */
-            fwrite($writeDB, $encodeArray);
-        }
+        $writeDB = fopen("./DB.txt", "a"); // "a", append -> para que no sobreescriba
+        fwrite($writeDB, $encodeArray . PHP_EOL);
         fclose($writeDB);
     }
 

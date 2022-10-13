@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="Alvaro Hernández">
     <meta name="description" content="Primera Web de monitorizacion iundustrial">
+    <script src="./js/js.js"></script>
     <title>Monitorización</title>
 </head>
 <body>
@@ -24,41 +25,39 @@
     <main>
         <h2><u>Tabla con los datos registrados: </u></h2>
         <input type="text" name="buscador" id="buscador" placeholder="Filtrar">
-        <table>
-            <table border="1">
-                <tr>
-                    <th><strong>Acciones</th>
-                    <th>Nombre del elemento</th>
-                    <th>Descripción del elemento</th>
-                    <th>Número de serie del elemento</th>
-                    <th>Estado del elemento</th>
-                    <th>Prioridad del elemento</strong></th>
-                </tr>
-                <tr>
-                    <td></td> <!-- METER LA X -->
-                    <td>Sensor de temperatura</td>
-                    <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore, dolore nemo labore impedit eos nihil consectetur repellat.</td>
-                    <td>541625</td>
-                    <td>Inactivo</td>
-                    <td>Alta</td>
-                </tr>
-                <tr>
-                    <td></td> <!-- METER LA X -->
-                    <td>Sensor de proximidad</td>
-                    <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim animi ut tenetur vero modi ratione officiis quoddignissimosid.</td>
-                    <td>746412</td>
-                    <td>Activo</td>
-                    <td>Baja</td>
-                </tr>
-                <tr>
-                    <td></td> <!-- METER LA X -->
-                    <td>Sensor de lumínico</td>
-                    <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore, dolore nemo labore impedit eos nihil consectetur repellat.</td>
-                    <td>365941</td>
-                    <td>Inactivo</td>
-                    <td>Media</td>
-                </tr>
-            </table>
+        <table id="tablaElemento" border="1">
+            <tr>
+                <th><strong>Acciones</th>
+                <th>Nombre del elemento</th>
+                <th>Descripción del elemento</th>
+                <th>Número de serie del elemento</th>
+                <th>Estado del elemento</th>
+                <th>Prioridad del elemento</strong></th>
+            </tr>
+            <tr id="fila1"> <!-- La idea es eliminar toda esta clase de golpe (la fila) -->
+                <td class="f1" id="f1boton"><button type="button" class="x" onclick="borrarFila(this)"><img src="./img/x.svg"  height="40px" width="40px"></button></td> <!-- LA X -->
+                <td class="f1" id="f1nombre"></td>
+                <td class="f1" id="f1desc"></td>
+                <td class="f1" id="f1numSer"></td>
+                <td class="f1" id="f1estado"></td>
+                <td class="f1" id="f1prio"></td>
+            </tr>
+            <tr id="fila2">
+                <td class="f2" id="f2boton"><button type="button" class="x"  onclick="borrarFila(this)"><img src="./img/x.svg" height="40px" width="40px"></button></td> <!-- LA X -->
+                <td class="f2" id="f2nombre"></td>
+                <td class="f2" id="f2desc"></td>
+                <td class="f2" id="f2numSer"></td>
+                <td class="f2" id="f2estado"></td>
+                <td class="f2" id="f2prio"></td>
+            </tr>
+            <tr id="fila3">
+                <td><button type="button" class="x" onclick="borrarFila(this)"><img src="./img/x.svg"  height="40px" width="40px"></button></td> <!-- LA X -->
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
         </table>
     </main>
     <footer>
