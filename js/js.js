@@ -1,5 +1,7 @@
-
-///////////////////////////////////////// METER ESTOS ELEMTOS EN LA TABLA PARA QUE SE QUEDEN PREDETERMINADOS
+window.onload = function (){
+    insertarFila();
+}
+///////////////////////////////////////// METER ESTOS ELEMTOS EN LA TABLA PARA QUE SE QUEDEN PREDETERMINADOS ////////////////
 //prueba array con elementos
 const elementos = {"elementos":
 [   {"nombre":"Termómetro","descripcion":"Medidor temperatura","numero de serie":"2342342","estado":"activo","prioridad":"media"}, 
@@ -7,59 +9,79 @@ const elementos = {"elementos":
     {"nombre":"Sensor lumínico","descripcion":"cuando se hace sol se apaga","numero de serie":"5464564","estado":"inactivo","prioridad":"baja"}
 ]}
 
-// mostrar json en tabla html js
 
-/////////////////////// PONER DATOS EN LA TABLA CON  ?¿?¿?¿??¿?¿ WINDOW.ONLOAD¿??¿?¿?¿?¿?¿? (PARA QUE PRECARGUE LOS DATOS)
+function insertarFila(){
+    //seleccionamos la tabla
+    const miTabla = document.querySelector("#tablaElemento");
+    const tablaCuerpo = document.querySelectorAll("#tablaCuerpo");
 
-const elementNombre = JSON.stringify(elementos.elementos[0].nombre);
+    //miTabla.appendChild(tablaCuerpo);
+    
+    //Recorrer array de elemetos para poder sacar los datos
+    for (let index = 0; index < elementos.elementos.length; index++) {
+        //console.log(elementos.elementos[index]);
 
-const cajaNombre = document.querySelector("#f1nombre");
+        let elementTr = document.createElement("tr");
+        let elementTd = document.createElement("td");
 
+        index.innerHTML = elementos.elementos[0]["numero de serie"];
+        elementTr.appendChild(elementTd);
+        miTabla.appendChild(elementTd);
 
-//cajaNombre.document.write(elementNombre).name;
-
-
-//cajaNombre.innerHTML = '#f1nombre';
-//window.onload(cajaNombre = elementNombre);
-
-
-const elementOneNombre = JSON.stringify(elementos.elementos[1].nombre);
-console.log(elementOneNombre);
-
-
-
-
-function recarga(){
-    document.body.onload = function() {
-        alert('La página terminó de cargar');
     }
+
+
+
+
+
+
+
+
+
+
+
+
 }
 
 
+/* // EJEMPLO PARA CREAR ELEMENTO, METERLO DENTRO DIBUJARLO EN LA TABLA, HACERLO EN MODO BUCLE
+
+let numSerOneTr = document.createElement("tr");
+let numSerOneTd = document.createElement("td");
+numSerOneTd.innerHTML = elementos.elementos[0]["numero de serie"];
+numSerOneTr.appendChild(numSerOneTd);
+tabla.appendChild(numSerOneTd); */
 
 
 
 
-function borrarFila(fila){
+
+
+
+
+
+
+
+
+
+
+
+
+
+function borrarFila(tabla){
     //seleccionamos la tabla
     tabla = document.querySelector("#tablaElemento");
     // Le pasamos el rowIndex (es el indice para que sepa que fila borrar)
-    var rowIndex = fila.parentNode.parentNode.rowIndex;
+
+    const rowIndex = tabla.parentNode.rowIndex;
+
     document.querySelector("#tablaElemento").deleteRow(rowIndex);
 }
 
-
-
-
-function eliminarFila(){
-    //los datos tienen que estar preecargados de los datos de la constante
-    //al darle a la X, que elimine la fila entera
-
-}
 
 function filtrarResult(){
     //buscar por nonmbre || descripcion
     //empiece a buscar a partir del 3º carácter
     //Resaltar resultados de la búsqueda con css ó dejar solo los resultados en la tabla
     //Puede haber varias coincidencias
-}
+} 

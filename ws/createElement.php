@@ -31,9 +31,6 @@ if($_POST){
         $priority = $_POST["igual"];
     } 
 
-
-
-    
 }
 
 //Instacia elemento y lo rellenaremos con los datos del formulario.

@@ -5,6 +5,7 @@ require_once "./createElement.php";
 class Element implements IToJson{
     public $name;
     public $description;
+    
     public $serialNumber;
     public $condition; //estado 
     public $priority;
@@ -26,7 +27,6 @@ class Element implements IToJson{
     public function setName($name)
     {
         $this->name = $name;
-        return $this;
     }
 
     public function getDescription()
@@ -37,7 +37,6 @@ class Element implements IToJson{
     public function setDescription($description)
     {
         $this->description = $description;
-        return $this;
     }
 
     public function getSerialNumber()
@@ -48,7 +47,6 @@ class Element implements IToJson{
     public function setSerialNumber($serialNumber)
     {
         $this->serialNumber = $serialNumber;
-        return $this;
     }
 
     public function getCondition()
@@ -59,7 +57,6 @@ class Element implements IToJson{
     public function setCondition($condition)
     {
         $this->condition = $condition;
-        return $this;
     }
 
     public function getPriority()
@@ -70,7 +67,6 @@ class Element implements IToJson{
     public function setPriority($priority)
     {
         $this->priority = $priority;
-        return $this;
     }
 
     public function toJson(){
@@ -85,8 +81,8 @@ class Element implements IToJson{
         fclose($writeDB);
     }
 
-    public function mostrar(){
+    /*  public function mostrar(){
         echo "name " . $this->name . "description " . $this->description . "serialNumber" . $this->serialNumber . "condicion" . $this->condition . "prioridad" . $this->priority;
-    } 
+    }  */
 }
 ?>

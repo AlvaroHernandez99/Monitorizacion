@@ -11,3 +11,6 @@ Nombre: aasaas ,Descripcion: asa ,Número de serie asas ,Estado inactivo ,Priori
 {"nombre":"clasiajsadas","descripcion":"d23dq","numero de serie":"dadasdadasasdas","estado":"activo","prioridad":"media"}{"nombre":"asdas","descripcion":"asdasd","numero de serie":"3","estado":"activo","prioridad":"media"}{"nombre":"asdas","descripcion":"asdasd","numero de serie":"3","estado":"activo","prioridad":"media\r\n"}{"nombre":"wew","descripcion":"ewewe","numero de serie":"we","estado":"activo","prioridad":"media\r\n"}{"nombre":"asdfsdf","descripcion":"sdfdsf","numero de serie":"sdf","estado":"activo","prioridad":"media"}{"nombre":null,"descripcion":null,"numero de serie":null,"estado":null,"prioridad":null}
 {"nombre":"sdsfsf","descripcion":"sdssd","numero de serie":"ss","estado":"inactivo","prioridad":"alta"}
 {"nombre":"alvaro","descripcion":"asfdasdasdas","numero de serie":"asdasd","estado":"activo","prioridad":"alta"}
+{"nombre":"asdasda","descripcion":"werewreww","numero de serie":"werwerew","estado":"activo","prioridad":"alta"}
+{"nombre":"nvcb","descripcion":"dvc","numero de serie":"345-567","estado":"inactivo","prioridad":"alta"}
+{"nombre":"alvaro","descripcion":"234234234234","numero de serie":"23423","estado":"activo","prioridad":"media"}
