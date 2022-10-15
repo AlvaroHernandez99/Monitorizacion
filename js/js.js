@@ -3,31 +3,39 @@ window.onload = function (){
 }
 ///////////////////////////////////////// METER ESTOS ELEMTOS EN LA TABLA PARA QUE SE QUEDEN PREDETERMINADOS ////////////////
 //prueba array con elementos
-const elementos = {"elementos":
+const elementos =
 [   {"nombre":"Termómetro","descripcion":"Medidor temperatura","numero de serie":"2342342","estado":"activo","prioridad":"media"}, 
     {"nombre":"Sensor Proximidad","descripcion":"cuando se acerca alguien pita","numero de serie":"334334","estado":"activo","prioridad":"alta"},
     {"nombre":"Sensor lumínico","descripcion":"cuando se hace sol se apaga","numero de serie":"5464564","estado":"inactivo","prioridad":"baja"}
-]}
+]
 
 
 function insertarFila(){
     //seleccionamos la tabla
-    const miTabla = document.querySelector("#tablaElemento");
+    const miTabla = document.querySelector("#tbody");
     const tablaCuerpo = document.querySelectorAll("#tablaCuerpo");
 
+    let tbody = document.getElementsByTagName("tbody");
+    pp = document.createElement("tr");
+    for (let index = 0; index < elementos.length; index++) {
+	const element = array[index];
+	tbody
+}appendChild(pp); 
     //miTabla.appendChild(tablaCuerpo);
+
+
+    ///////////////////////// BUENO BUENO
     
-    //Recorrer array de elemetos para poder sacar los datos
-    for (let index = 0; index < elementos.elementos.length; index++) {
-        //console.log(elementos.elementos[index]);
+    
+    // Recorre la lista de elementos.
+    for (let index = 0; index < elementos.length; index++) {
+        //objetos = elementos[index];
+        console.log(elementos[index].descripcion)    ;
+        
 
-        let elementTr = document.createElement("tr");
-        let elementTd = document.createElement("td");
+        
 
-        index.innerHTML = elementos.elementos[0]["numero de serie"];
-        elementTr.appendChild(elementTd);
-        miTabla.appendChild(elementTd);
-
+        
     }
 
 
@@ -36,15 +44,8 @@ function insertarFila(){
 
 
 
-
-
-
-
-
 }
-
-
-/* // EJEMPLO PARA CREAR ELEMENTO, METERLO DENTRO DIBUJARLO EN LA TABLA, HACERLO EN MODO BUCLE
+    /* // EJEMPLO PARA CREAR ELEMENTO, METERLO DENTRO DIBUJARLO EN LA TABLA, HACERLO EN MODO BUCLE
 
 let numSerOneTr = document.createElement("tr");
 let numSerOneTd = document.createElement("td");

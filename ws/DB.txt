@@ -14,3 +14,8 @@ Nombre: aasaas ,Descripcion: asa ,Número de serie asas ,Estado inactivo ,Priori
 {"nombre":"asdasda","descripcion":"werewreww","numero de serie":"werwerew","estado":"activo","prioridad":"alta"}
 {"nombre":"nvcb","descripcion":"dvc","numero de serie":"345-567","estado":"inactivo","prioridad":"alta"}
 {"nombre":"alvaro","descripcion":"234234234234","numero de serie":"23423","estado":"activo","prioridad":"media"}
+{"nombre":"a","descripcion":"a","numero de serie":"a","estado":"activo","prioridad":"alta"}
+{"nombre":"asdd3223","descripcion":"awded","numero de serie":"43543","estado":"select","prioridad":"alta"}
+{"nombre":"sdfdsf","descripcion":"werwrw","numero de serie":"3333","estado":"activo","prioridad":"media"}
+{"nombre":"sdfdsf","descripcion":"werwrw","numero de serie":"3333","estado":"no seleccionado","prioridad":"media"}
+{"nombre":"ty","descripcion":"ty","numero de serie":"565","estado":"activo","prioridad":"alta"}
