@@ -11,32 +11,43 @@ const elementos =
 
 
 function insertarFila(){
+
     //seleccionamos la tabla
-    const miTabla = document.querySelector("#tbody");
-    const tablaCuerpo = document.querySelectorAll("#tablaCuerpo");
+    const cuerpoTabla = document.querySelector("tbody");
+    //creamos tr y lo metemos dentro de la tabla
+    const cuerpoTr = document.createElement("tr");
+    cuerpoTabla.appendChild(cuerpoTr);
+    //creamos td y lo metemos dentro del tr
+    const cuerpoTd = document.createElement("td");
+    cuerpoTr.appendChild(cuerpoTd);
+    //cuerpoTd.textContent = "PRUEBA";
 
-    let tbody = document.getElementsByTagName("tbody");
-    pp = document.createElement("tr");
+    //////////////////       //////////////////////////////////////
+
+
+    //Ensela los objetos
     for (let index = 0; index < elementos.length; index++) {
-	const element = array[index];
-	tbody
-}appendChild(pp); 
-    //miTabla.appendChild(tablaCuerpo);
-
-
-    ///////////////////////// BUENO BUENO
-    
-    
-    // Recorre la lista de elementos.
-    for (let index = 0; index < elementos.length; index++) {
-        //objetos = elementos[index];
-        console.log(elementos[index].descripcion)    ;
-        
-
-        
-
+        const element = elementos[index];
+        console.log(element);
+        cuerpoTd.textContent = element.nombre;
         
     }
+
+
+
+    // HACEN LO MISMO ;(((((((((((((
+        for (const key in elementos) {
+            if (Object.hasOwnProperty.call(elementos, key)) {
+                const element = elementos[key].nombre;
+                console.log(element);
+            }
+        }
+    // Enseña el dato que le pongas de cada elemento
+    for (let index = 0; index < elementos.length; index++) {
+        //objetos = elementos[index];
+        console.log(elementos[index].descripcion);
+        
+    } 
 
 
 
@@ -45,6 +56,15 @@ function insertarFila(){
 
 
 }
+
+
+
+
+
+
+
+
+
     /* // EJEMPLO PARA CREAR ELEMENTO, METERLO DENTRO DIBUJARLO EN LA TABLA, HACERLO EN MODO BUCLE
 
 let numSerOneTr = document.createElement("tr");
@@ -69,7 +89,7 @@ tabla.appendChild(numSerOneTd); */
 
 
 
-function borrarFila(tabla){
+/* function borrarFila(tabla){
     //seleccionamos la tabla
     tabla = document.querySelector("#tablaElemento");
     // Le pasamos el rowIndex (es el indice para que sepa que fila borrar)
@@ -77,7 +97,7 @@ function borrarFila(tabla){
     const rowIndex = tabla.parentNode.rowIndex;
 
     document.querySelector("#tablaElemento").deleteRow(rowIndex);
-}
+} */
 
 
 function filtrarResult(){

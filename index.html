@@ -5,59 +5,60 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="Alvaro Hernández">
+    <link rel="shortcut icon" href="./img/dana.jpg" type="image/x-icon">
     <meta name="description" content="Primera Web de monitorizacion iundustrial">
+    <link rel="stylesheet" href="./css/styleIndex.css">
     <script src="./js/js.js"></script>
     <title>Monitorización</title>
 </head>
 <body>
     <header>
-        <h1><i>Página 1</i></h1>
         <div class="menu-nav">
             <ul>
-                <li>Página 1</li>
-                <li><a href="./pagina2.html">Página 2</a></li>
-                <li><a href="./pagina3.html">Página 3</a></li>
-                <li><a href="./pagina4.html">Página 4</a></li>
-                <li><a href="./pagina5.html">Página 5</a></li>
+                <img id="dana" src="./img/dana.jpg" >
+                <li><a href="./pagina2.html">Tabla</a></li>
+                <li><a href="./pagina3.html">Información General</a></li>
+                <li><a href="./pagina4.html">Información Medio Ambiente</a></li>
+                <li><a href="./pagina5.html">Vídeo informativo</a></li>
             </ul>
         </div>    
     </header>
     <main>
-        <h2><u>Formulario:</u></h2>
-        <div class="formulario">
-            <form method="post" action="./ws/createElement.php">
-                <fieldset>
-                    <legend><strong>Datos a rellenar: </strong></legend>
-                    <p><strong>Nombre del elemento: </strong><input name="nombre" type="text" placeholder="Bujía" required></p>
-                    <p><strong>Descripción del elemento:</strong></p><textarea name="desc" type="text" placeholder="Tira corriente" rows="5" cols="30" required></textarea>
-                    <p><strong>Número de serie del elemento: </strong><input name="numSer" type="number" placeholder="23445432" required></p>
-                    <label for="prio"><strong>Estado: </strong></label>
-                    <select name="estado" id="estado"> <!-- PONER REQUERIDO¿¿¿¿¿¿¿¿¿ -->
-                        <option value="no seleccionado">---</option>
-                        <option value="activo">Activo</option>
-                        <option value="inactivo">Inactivo</option>
-                    </select>
-                    <p><strong>Prioridad:</strong>
-                        <input type="radio" name="igual" value="alta" required>
-                        <label for="alta">Alta</label>
-                        <input type="radio" name="igual" value="media" required>
-                        <label for="media">Media</label>
-                        <input type="radio" name="igual" value="baja" required> 
-                        <label for="baja">Baja</label>
-                    </p>
-                    <input type="submit" value="Enviar">
-                    <a href="./index.html"><input type="button" value="Reset"></a> <!-- De tipo submit para que refresque la página -->
-                </fieldset>
-            </form>
+        <div class="allForm">
+            <h2>Formulario:</h2>
+            <div class="formulario">
+                <form method="post" action="./ws/createElement.php">
+                    <fieldset>
+                        <legend>Datos a rellenar: </legend>
+                        <p>Nombre del elemento: <input name="nombre" type="text" placeholder="Bujía" required></p>
+                        <p>Descripción del elemento:</p><textarea name="desc" type="text" placeholder="Tira corriente" rows="5" cols="30" required></textarea>
+                        <p>Número de serie del elemento: <input name="numSer" type="number" placeholder="23445432" required></p>
+                        <label for="prio">Estado: </label>
+                        <select name="estado" id="estado"> <!-- PONER REQUERIDO¿¿¿¿¿¿¿¿¿ -->
+                            <option value="no seleccionado">---</option>
+                            <option value="activo">Activo</option>
+                            <option value="inactivo">Inactivo</option>
+                        </select>
+                        <p>Prioridad:
+                            <input type="radio" name="igual" value="alta" required>
+                            <label for="alta">Alta</label>
+                            <input type="radio" name="igual" value="media" required>
+                            <label for="media">Media</label>
+                            <input type="radio" name="igual" value="baja" required> 
+                            <label for="baja">Baja</label>
+                        </p>
+                        <input type="submit" value="Enviar">
+                        <a href="./index.html"><input type="button" value="Reset"></a> <!-- De tipo submit para que refresque la página -->
+                    </fieldset>
+                </form>
+            </div>
         </div>
     </main>
     <footer>
-        <center> <!-- En desuso pero curioso -->
-            <div class="footer">
-                <p class="copi">Página creada por Álvaro ® 2022 K36 </p>
-                <a href="https://infovaroblog.wordpress.com/"><img src="./img/wordpress.png" width="35" height="35"></a>
-            </div>
-        </center>
+        <div class="footer">
+            <p class="copi">Página creada por Álvaro ® 2022 K36 </p>
+            <a href="https://infovaroblog.wordpress.com/"><img src="./img/wordpress.png" width="35" height="35"></a>
+        </div>
     </footer>
 </body>
 </html>

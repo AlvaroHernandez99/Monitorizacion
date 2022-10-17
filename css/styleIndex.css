@@ -1,0 +1,70 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+html{
+    background-image: url("../img/fondo.jpg");
+    background-repeat: no-repeat;
+}
+/* ///////////  MENU-NAV   /////////////////// */
+header {
+    background: rgba(0,0,0,0.7);
+    width: 100%;
+    /* position: fixed; */
+}
+
+.menu-nav ul {
+    list-style: none;
+    overflow: hidden; 
+}
+.menu-nav ul li {
+    float: left;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+}
+.menu-nav ul li a {
+    display: block;
+    padding: 10px;
+    color: #fff;
+    text-decoration: none;
+}
+.menu-nav ul li:hover {
+    background: #09afb59f;
+}
+/* ////////////////////////////// */
+#dana{
+    float: right;
+    border-radius: 50px;
+    max-width: 45px;
+    max-height: 45px;
+    margin-top: 2px;
+    margin-right: 3vw;
+}
+
+
+.footer{
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    color: white;
+    background: rgba(0,0,0,0.7);
+    display: flex;
+
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+}
+
+
+
+
+
+
+
+                                              /* A PINCHEEEE */
+.allForm{
+    text-align: center;
+    display: block;
+    margin-top: 50px;
+
+}
