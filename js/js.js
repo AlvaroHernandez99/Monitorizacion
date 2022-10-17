@@ -49,19 +49,14 @@ function insertarFila(){
         
     } 
 
-
-
-
-
-
-
 }
 
 
+function insertarFilaDos(){
+    const seleccionTabla = document.querySelector("tbody");
+    
 
-
-
-
+}
 
 
 

@@ -11,25 +11,11 @@ if($_POST){
     $condition = "";
     $priority = "";
 
-    if(isset($_POST["nombre"])){    //isset() -> comprueba que una variable esté definida y no sea null
-        $name = $_POST["nombre"];
-    }
-
-    if(isset($_POST["desc"])){
-        $description = $_POST["desc"];
-    }
-
-    if(isset($_POST["numSer"])){
-        $serialNumber = $_POST["numSer"];
-    }
-
-    if(isset($_POST["estado"])){
-        $condition = $_POST["estado"];
-    }
-
-    if(isset($_POST["igual"])){
-        $priority = $_POST["igual"];
-    } 
+    $name = $_POST["nombre"] ?? null;
+    $description = $_POST["desc"] ?? null;
+    $serialNumber = $_POST["numSer"] ?? null;
+    $condition = $_POST["estado"] ?? null;
+    $priority = $_POST["igual"] ?? null;
 
 }
 
