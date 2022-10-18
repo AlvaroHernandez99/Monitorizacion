@@ -81,8 +81,8 @@ class Element implements IToJson{
         fclose($writeDB);
     }
 
-    /*  public function mostrar(){
+    public function mostrar(){
         echo "name " . $this->name . "description " . $this->description . "serialNumber" . $this->serialNumber . "condicion" . $this->condition . "prioridad" . $this->priority;
-    }  */
+    }
 }
 ?>
