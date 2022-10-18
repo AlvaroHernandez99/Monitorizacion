@@ -9,64 +9,72 @@ const elementos =
     {"nombre":"Sensor lumínico","descripcion":"cuando se hace sol se apaga","numero de serie":"5464564","estado":"inactivo","prioridad":"baja"}
 ]
 
-
 function insertarFila(){
-
-    //seleccionamos la tabla
-    const cuerpoTabla = document.querySelector("tbody");
-    //creamos tr y lo metemos dentro de la tabla
-    const cuerpoTr = document.createElement("tr");
-    cuerpoTabla.appendChild(cuerpoTr);
-    //creamos td y lo metemos dentro del tr
-    const cuerpoTd = document.createElement("td");
-    cuerpoTr.appendChild(cuerpoTd);
-    //cuerpoTd.textContent = "PRUEBA";
-
-    //////////////////       //////////////////////////////////////
-
-
-    //Ensela los objetos
+    //Enseña los datos que le paso
     for (let index = 0; index < elementos.length; index++) {
         const element = elementos[index];
-        console.log(element);
+        //console.log(element.nombre);
+        //seleccionamos la tabla
+        const cuerpoTabla = document.querySelector("tbody");
+        //creamos tr y lo metemos dentro de la tabla
+        const cuerpoTr = document.createElement("tr");
+        cuerpoTabla.appendChild(cuerpoTr);
+
+        //X
+        const x = document.createElement("td");
+        const button = document.createElement("button");
+        cuerpoTr.appendChild(x);
+        x.appendChild(button);
+        button.textContent = "X";
+
+        button.onclick = borrarFila;
+        /* button.addEventListener(click, borrarFila()); */
+
+        //creamos td y lo metemos dentro del tr (nombre)
+        const cuerpoTd = document.createElement("td");
+        cuerpoTr.appendChild(cuerpoTd);
         cuerpoTd.textContent = element.nombre;
-        
-    }
+        //Desc
+        const cuerpoTdDesc = document.createElement("td");
+        cuerpoTr.appendChild(cuerpoTdDesc);
+        cuerpoTdDesc.textContent = element.descripcion;
+        //NumSer
+        const cuerpoTdNum = document.createElement("td");
+        cuerpoTr.appendChild(cuerpoTdNum);
+        cuerpoTdNum.textContent = element["numero de serie"];
+        //estado
+        const cuerpoTdEst = document.createElement("td");
+        cuerpoTr.appendChild(cuerpoTdEst);
+        cuerpoTdEst.textContent = element.estado;
+        //prioridad
+        const cuerpoTdPrio = document.createElement("td");
+        cuerpoTr.appendChild(cuerpoTdPrio);
+        cuerpoTdPrio.textContent = element.prioridad;
 
+        // PARA BORRAR FILAS
+        function borrarFila(){
+            let fila = cuerpoTabla.removeChild(cuerpoTr);
+            /* document.fila.parentElement.remove(); */
+            fila.remove();
+        } 
 
-
-    // HACEN LO MISMO ;(((((((((((((
-        for (const key in elementos) {
-            if (Object.hasOwnProperty.call(elementos, key)) {
-                const element = elementos[key].nombre;
-                console.log(element);
-            }
+    }//NO HACEN NADA
+     // HACEN LO MISMO ;(((((((((((((
+    for (const key in elementos) {
+        if (Object.hasOwnProperty.call(elementos, key)) {
+            const element = elementos[key].nombre;
+            //console.log(element);
         }
+    }
     // Enseña el dato que le pongas de cada elemento
     for (let index = 0; index < elementos.length; index++) {
         //objetos = elementos[index];
-        console.log(elementos[index].descripcion);
-        
+        //console.log(elementos[index].descripcion);
     } 
-
-}
-
-
-function insertarFilaDos(){
-    const seleccionTabla = document.querySelector("tbody");
-    
-
 }
 
 
 
-    /* // EJEMPLO PARA CREAR ELEMENTO, METERLO DENTRO DIBUJARLO EN LA TABLA, HACERLO EN MODO BUCLE
-
-let numSerOneTr = document.createElement("tr");
-let numSerOneTd = document.createElement("td");
-numSerOneTd.innerHTML = elementos.elementos[0]["numero de serie"];
-numSerOneTr.appendChild(numSerOneTd);
-tabla.appendChild(numSerOneTd); */
 
 
 
@@ -84,15 +92,8 @@ tabla.appendChild(numSerOneTd); */
 
 
 
-/* function borrarFila(tabla){
-    //seleccionamos la tabla
-    tabla = document.querySelector("#tablaElemento");
-    // Le pasamos el rowIndex (es el indice para que sepa que fila borrar)
 
-    const rowIndex = tabla.parentNode.rowIndex;
 
-    document.querySelector("#tablaElemento").deleteRow(rowIndex);
-} */
 
 
 function filtrarResult(){
