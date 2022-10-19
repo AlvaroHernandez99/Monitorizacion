@@ -7,7 +7,8 @@ const elementos =
 [   {"nombre":"Termómetro","descripcion":"Medidor temperatura","numero de serie":"2342342","estado":"activo","prioridad":"media"}, 
     {"nombre":"Sensor Proximidad","descripcion":"cuando se acerca alguien pita","numero de serie":"334334","estado":"activo","prioridad":"alta"},
     {"nombre":"Sensor lumínico","descripcion":"cuando se hace sol se apaga","numero de serie":"5464564","estado":"inactivo","prioridad":"baja"}
-]
+];
+
 
 function insertarFila(){
     //Enseña los datos que le paso
@@ -18,6 +19,10 @@ function insertarFila(){
         const cuerpoTabla = document.querySelector("tbody");
         //creamos tr y lo metemos dentro de la tabla
         const cuerpoTr = document.createElement("tr");
+        //
+        //Poner en td y tr nombre y desc
+        cuerpoTr.setAttribute("class", "a");
+        //
         cuerpoTabla.appendChild(cuerpoTr);
 
         //X
@@ -57,48 +62,28 @@ function insertarFila(){
             /* document.fila.parentElement.remove(); */
             fila.remove();
         } 
-
-    }//NO HACEN NADA
-     // HACEN LO MISMO ;(((((((((((((
-    for (const key in elementos) {
-        if (Object.hasOwnProperty.call(elementos, key)) {
-            const element = elementos[key].nombre;
-            //console.log(element);
-        }
     }
-    // Enseña el dato que le pongas de cada elemento
-    for (let index = 0; index < elementos.length; index++) {
-        //objetos = elementos[index];
-        //console.log(elementos[index].descripcion);
-    } 
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+document.getElementById("buscador").addEventListener("keyup", filtrarResult);
 
 function filtrarResult(){
-    //buscar por nonmbre || descripcion
-    //empiece a buscar a partir del 3º carácter
-    //Resaltar resultados de la búsqueda con css ó dejar solo los resultados en la tabla
-    //Puede haber varias coincidencias
-} 
+    //selecciono la clase a (los tr)
+    const a = document.querySelector(".a");
+    
+    //ME recoge lo que le paso al input
+    document.addEventListener("keyup", e =>{
+        //console.log(e.target.value); -> Saca por consola lo que le meto
+        document.querySelectorAll('.a').forEach(datos =>{
+            //poner objeto en minúscula y comparar con lo que le meton en el input
+            datos.textContent.toLowerCase().includes(e.target.value)
+            //if
+            ? datos.classList.remove('filtro')
+            //else
+            : datos.classList.add('filtro'); 
+        })
+    })
+
+}
+

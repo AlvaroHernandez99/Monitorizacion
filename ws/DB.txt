@@ -20,3 +20,7 @@ Nombre: aasaas ,Descripcion: asa ,Número de serie asas ,Estado inactivo ,Priori
 {"nombre":"sdfdsf","descripcion":"werwrw","numero de serie":"3333","estado":"no seleccionado","prioridad":"media"}
 {"nombre":"ty","descripcion":"ty","numero de serie":"565","estado":"activo","prioridad":"alta"}
 {"nombre":"asdas","descripcion":"asdsad","numero de serie":"2342","estado":"activo","prioridad":"alta"}
+{"nombre":"alvaro","descripcion":"hernandez","numero de serie":"2133232","estado":"activo","prioridad":"alta"}
+{"nombre":"asasa","descripcion":"asa","numero de serie":"322323","estado":"activo","prioridad":"alta"}
+{"nombre":"","descripcion":"","numero de serie":"","estado":"no seleccionado","prioridad":null}
+{"nombre":"asasd","descripcion":"asa","numero de serie":"","estado":"activo","prioridad":"alta"}
