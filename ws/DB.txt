@@ -24,3 +24,6 @@ Nombre: aasaas ,Descripcion: asa ,Número de serie asas ,Estado inactivo ,Priori
 {"nombre":"asasa","descripcion":"asa","numero de serie":"322323","estado":"activo","prioridad":"alta"}
 {"nombre":"","descripcion":"","numero de serie":"","estado":"no seleccionado","prioridad":null}
 {"nombre":"asasd","descripcion":"asa","numero de serie":"","estado":"activo","prioridad":"alta"}
+{"nombre":"es\u00f1a","descripcion":"\u00f1","numero de serie":"7","estado":"activo","prioridad":"alta"}
+{"nombre":null,"descripcion":null,"numero de serie":null,"estado":null,"prioridad":null}
+{"nombre":"","descripcion":"","numero de serie":"","estado":"no seleccionado","prioridad":null}

@@ -50,7 +50,8 @@ header {
     color: black;
     background: #0564679f;
     display: flex;
-
+    bottom: 0;
+    position: fixed;
     align-items: center;
     text-align: center;
     justify-content: center;
