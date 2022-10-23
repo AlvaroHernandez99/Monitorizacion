@@ -1,4 +1,4 @@
-window.onload = function (){
+window.onload = () => {
     insertarFila();
 }
 ///////////////////////////////////////// METER ESTOS ELEMTOS EN LA TABLA PARA QUE SE QUEDEN PREDETERMINADOS ////////////////
@@ -111,21 +111,33 @@ function filtrarResult(){
 
                 for (let i = 0; i < elementos.length; i++) {
                     
-                    if(elementos[i].nombre.toLocaleLowerCase().includes(buscadorInput) || elementos[i].descripcion.toLocaleLowerCase().includes(buscadorInput) ){
+                    if(elementos[i].nombre.toLowerCase().includes(buscadorInput) || elementos[i].descripcion.toLowerCase().includes(buscadorInput) ){
                         //console.log(elementos[i].nombre);
                         //console.log(elementos[i].descripcion);
                         datos.textContent.toLowerCase().includes(buscadorInput)
                         //if
                         ? datos.classList.remove('filtro')
-                        //else
+                        //else  --> Se añade el filtro para esconder los resultados no buscados
                         : datos.classList.add('filtro'); 
                         console.log("Elemento encontrado");
-                    }else{
+                    /* }else{
+                        //Hacer que cuando no haya nada en el input que la recargue
                         console.log("Elemento no encontrado");
-                    }
+
+                        buscar = document.querySelector("#buscador");
+                        if(buscar.value == ""){
+                            console.log("eeee");
+                        }*/
+                    } 
                 } 
+            }else if(buscadorInput.length == 0){
+                console.log("vacio");
+                datos.classList.remove('filtro');
             }
         })
     })
 }
 
+function recargarPagina(){
+    window.location.reload();
+}
