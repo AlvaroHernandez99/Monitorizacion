@@ -6,7 +6,7 @@ window.onload = function (){
 const elementos =
 [   {
         "nombre":"Termómetro",
-        "descripcion":"Medidor temperatura",
+        "descripcion":"Mide la temperatura",
         "numero de serie":"2342342",
         "estado":"activo",
         "prioridad":"media"
@@ -31,23 +31,14 @@ function insertarFila(){
     //Enseña los datos que le paso
     for (let index = 0; index < elementos.length; index++) {
 
-
         //Nuestro tbody vacio
         let tbody=document.querySelector("#nuestrasFilas");
         const element = elementos[index];
-        
-        //console.log(element.nombre);       
-
 
         //creamos tr y lo metemos dentro de la tabla
         const cuerpoTr = document.createElement("tr");
         
         ////////////////////////////////////////////////////////////
-        //Poner en y tr nombre y desc
-
-
-        //cuerpoTr.setAttribute("id", index);
-
         cuerpoTr.setAttribute("class", "a");
         //
         tbody.appendChild(cuerpoTr);
@@ -94,100 +85,47 @@ function insertarFila(){
     }
 }
 
-
-
 document.getElementById("buscador").addEventListener("keyup", filtrarResult);
 
-
 function filtrarResult(){
+
+    //Array con el NodeList de los 3 nombres
     nombresElementos = document.querySelectorAll(".names");
+    //console.log(nombresElementos);
+
+    //Array con el NodeList de las 3 desc
     descsElementos = document.querySelectorAll(".descs"); 
+    //console.log(descsElementos);
     
-    console.log(nombresElementos);
-
     //selecciono la clase a (los tr)
-    const a = document.querySelector(".a");
-    
-    //ME recoge lo que le paso al input
+    const claseA = document.querySelectorAll(".a");
+    //console.log(claseA);
+
+    //ME recoge lo que le paso al input por cada letra que le paso
     document.addEventListener("keyup", e =>{
-        //console.log(e.target.value); -> Saca por consola lo que le meto
-        document.querySelectorAll('.a').forEach(datos =>{
-            //BUSCA A PARTIR DE LA TERCERA --------------------------- PERO LUEGO NO VUELVE A HACER LA BUSQUEDA AL BORRAR
+        //console.log(e.target.value); -> Saca por consola lo que le meto al imput
+        claseA.forEach(datos =>{
             buscadorInput = (e.target.value).toLowerCase();
-
-            
-
+            //BUSCA A PARTIR DE LA TERCERA 
             if (buscadorInput.length >= 3) {
 
-                
-
-                datos.textContent.toLowerCase().includes(buscadorInput)
-                //if
-                ? datos.classList.remove('filtro')
-                //else
-                : datos.classList.add('filtro'); 
-
-                /* console.log(buscadorInput); */
-/* 
                 for (let i = 0; i < elementos.length; i++) {
-                    console.log(elementos[i].nombre); 
-                    const nombredesc = elementos.find(busq => busq.nombre == buscadorInput); 
-                    console.log(nombredesc); 
-                    elementNombre = elementos[i].nombre;
-
-                    console.log(elementNombre);
-
-
-                    if(buscadorInput == elementNombre){
-                        console.log("encontrado");
+                    
+                    if(elementos[i].nombre.toLocaleLowerCase().includes(buscadorInput) || elementos[i].descripcion.toLocaleLowerCase().includes(buscadorInput) ){
+                        //console.log(elementos[i].nombre);
+                        //console.log(elementos[i].descripcion);
+                        datos.textContent.toLowerCase().includes(buscadorInput)
+                        //if
+                        ? datos.classList.remove('filtro')
+                        //else
+                        : datos.classList.add('filtro'); 
+                        console.log("Elemento encontrado");
                     }else{
-                        console.log("moscas");
+                        console.log("Elemento no encontrado");
                     }
-
-                } */
-                
-            
-            
-            
-
-
-
-            
-            /* 
-            datos.textContent.toLowerCase().includes(buscadorInput)
-             //if
-            ? datos.classList.remove('filtro')
-             //else
-            : datos.classList.add('filtro'); 
-            */
-            
-
-
-            
+                } 
             }
         })
     })
 }
-//!!!!!!!!!!!!!!!!!!!!!!!!!
 
-            //A través del DOM o a través del array de clases (nombre y desc), 
-            //hacer la comparacion con el texto introducido
-            
-
-
-
-
-
-
-
-
-
-
-
-
-
-            // arreglar esta puta mierda --- PARA QUE ME BUSQUE SOLO CON NOMBRE O DESC
-                /* if (elementos[1].nombre.toLocaleLowerCase == e.target.value.toLocaleLowerCase || elementos[1].descripcion.toLocaleLowerCase == e.target.value.toLocaleLowerCase) {
-                    //poner objeto en minúscula y comparar con lo que le meto en el input
-                    
-                } */
