@@ -71,20 +71,15 @@ class Element implements IToJson{
 
     public function toJson(){
         //array creado para que se almacene la info ----> SALE POR PANTALLA
-        $arrayElements = array('nombre' => $this->name, 'descripcion' =>$this->description, 
-        'numero de serie'=>$this->serialNumber, 'estado'=>$this->condition, 'prioridad'=>$this->priority
-    );
+        $arrayElements = array(
+            'nombre' => $this->name, 
+            'descripcion' =>$this->description, 
+            'numero de serie'=>$this->serialNumber, 
+            'estado'=>$this->condition, 
+            'prioridad'=>$this->priority
+        );
         $encodeArray = json_encode($arrayElements);
-        echo "Los datos del elemento introducidos en la base de datos son: " . $encodeArray;
-        
-        //ESTO ES LO QUE ESCRIBE AL ARCHIVO DE LA BASE DE DATOS 
-        $writeDB = fopen("./DB.txt", "a"); // "a", append -> para que no sobreescriba
-        fwrite($writeDB, $encodeArray . PHP_EOL);
-        fclose($writeDB);
-    }
-
-    public function mostrar(){
-        echo "name " . $this->name . "description " . $this->description . "serialNumber" . $this->serialNumber . "condicion" . $this->condition . "prioridad" . $this->priority;
+        return $encodeArray;
     }
 }
 ?>

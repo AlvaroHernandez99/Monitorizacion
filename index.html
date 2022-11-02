@@ -8,7 +8,7 @@
     <link rel="shortcut icon" href="./img/dana.jpg" type="image/x-icon">
     <meta name="description" content="Primera Web de monitorizacion iundustrial">
     <link rel="stylesheet" href="./css/styleShared.css">
-    <link rel="stylesheet" href="./css/styleIndex.css">
+    <link rel="stylesheet" href="./css/styleForm.css">
     <script defer src="./js/js.js"></script>
     <title>Monitorización</title>
 </head>
@@ -22,43 +22,52 @@
                 <li><a href="./pagina4.html">Información Medio Ambiente</a></li>
                 <li><a href="./pagina5.html">Vídeo informativo</a></li>
             </ul>
-        </div>    
+        </div>
     </header>
     <main>
         <div class="allForm">
-            <h2>Formulario:</h2>
+            <h2 id="textForm">Formulario</h2>
             <div class="formulario">
-                <form method="post" action="./ws/createElement.php">
-                    <fieldset>
-                        <legend>Datos a rellenar: </legend>
-                        <p>Nombre del elemento: <input name="nombre" type="text" placeholder="Bujía"></p>
-                        <p>Descripción del elemento:</p><textarea name="desc" type="text" placeholder="Tira corriente" rows="5" cols="30"></textarea>
-                        <p>Número de serie del elemento: <input name="numSer" type="number" placeholder="23445432"></p>
+                <form id="formularioGrid" method="post" action="./ws/createElement.php">
+                    <div class="div1">
+                        <p class="label">Nombre del elemento: <input name="nombre" type="text" placeholder="Bujía"></p>
+                    </div>
+                    <div class="div2">
+                        <p class="label">Descripción:</p><textarea name="desc" type="text" placeholder="Tira corriente" rows="5" cols="30"></textarea>
+                    </div>
+                    <div class="div3">
+                        <p class="label">Número de serie del elemento: <input name="numSer" type="number" placeholder="23445432"></p>
+                    </div>
+                    <div class="div4">
                         <label for="prio">Estado: </label>
                         <select name="estado" id="estado"> <!-- PONER REQUERIDO¿¿¿¿¿¿¿¿¿ -->
                             <option value="no seleccionado">---</option>
                             <option value="activo">Activo</option>
                             <option value="inactivo">Inactivo</option>
                         </select>
-                        <p>Prioridad:
-                            <input type="radio" name="igual" value="alta">
-                            <label for="alta">Alta</label>
-                            <input type="radio" name="igual" value="media">
-                            <label for="media">Media</label>
-                            <input type="radio" name="igual" value="baja"> 
-                            <label for="baja">Baja</label>
+                    </div>
+                    <div class="div5">
+                        <p class="label">Prioridad:
+                        <input class="hola" type="radio" name="igual" value="alta">
+                        <label for="alta">Alta</label>
+                        <input type="radio" name="igual" value="media">
+                        <label for="media">Media</label>
+                        <input type="radio" name="igual" value="baja"> 
+                        <label for="baja">Baja</label>
                         </p>
-                        <input type="submit" value="Enviar">
-                        <a href="./index.html"><input type="button" value="Reset"></a> <!-- De tipo submit para que refresque la página -->
-                    </fieldset>
+                    </div>  
+                    <div class="div6">
+                        <input class="botones" type="submit" value="Enviar">
+                        <a href="./index.html"><input class="botones" type="button" value="Reset"></a> <!-- De tipo submit para que refresque la página -->
+                    </div>
                 </form>
             </div>
         </div>
     </main>
     <footer>
-        <div class="footer">
+        <div class="footerForm">
             <p class="copi">Página creada por Álvaro ® 2022 K36 </p>
-            <a href="https://infovaroblog.wordpress.com/"><img src="./img/wordpress.png" width="35" height="35"></a>
+            <a href="https://infovaroblog.wordpress.com/"><img src="./img/wordpress.png" id="imgWord" width="35" height="35"></a>
         </div>
     </footer>
 </body>

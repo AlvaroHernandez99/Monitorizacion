@@ -32,7 +32,7 @@ header {
     text-decoration: none;
 }
 .menu-nav ul li:hover {
-    background: rgba(77, 160, 255, 0.729);
+    background: #ffffff9f;
 }
 /* ////////////////////////////// */
 #dana{
@@ -44,18 +44,9 @@ header {
     margin-right: 3vw;
 }
 
-.footer{
-    font-family: Arial, sans-serif;
-    font-size: 16px;
-    color: black;
-    background: #0564679f;
-    display: flex;
-    bottom: 0;
-    position: fixed;
-    align-items: center;
-    text-align: center;
-    justify-content: center;
-}
+#imgWord{
+    margin-left: 1vw;
+} 
 
 
 /* PARA JS */

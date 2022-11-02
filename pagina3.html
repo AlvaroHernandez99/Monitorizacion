@@ -8,6 +8,7 @@
     <link rel="shortcut icon" href="./img/dana.jpg" type="image/x-icon">
     <meta name="description" content="Primera Web de monitorizacion iundustrial">
     <link rel="stylesheet" href="./css/styleShared.css">
+    <link rel="stylesheet" href="./css/styleInfo.css">
     <title>Monitorización</title>
 </head>
 <body>
@@ -23,29 +24,29 @@
         </div>
     </header>
     <main>
-        <h2>Información sobre los tipos de componentes (vistos anteriormente).</h2>
-        <ul>
-            <div>
-                <li><h3>Sensor de temperatura</h3></li>
-                <p>La detección de temperatura es la base de todas las formas avanzadas de control de temperatura y compensación. El circuito de detección de temperatura monitorea la temperatura ambiente. Luego puede notificar al sistema la temperatura real o, si el circuito de detección es más inteligente, cuando ocurre un evento de control de temperatura. Cuando excede un umbral específico de alta temperatura, el sistema puede tomar medidas para bajar la temperatura. Un ejemplo de esto es encender un ventilador.</p>
-                <img src="./img/tipostemperatura.jpg">
-            </div>
-            <div>
-                <li><h3>Sensor de proximidad</h3></li>
-                <p>Los sensores de proximidad inductivos representan el mayor volumen de ventas. Integran un circuito oscilante que genera un campo electromagnético. Cualquier pieza metálica que se aproxime a ellos será detectada al fluir una corriente de inducción en el objeto. La oscilación se atenuará y el sensor detectará esta variación en el estado de oscilación.</p>
-                <img src="./img/proximidad1.jpg">
-                <img src="./img/proximidad2.jpg">
-            </div>
-            <div>
-                <li><h3>Sensor lumínico</h3></li>
-                <p>Un sensor de luminosidad es un dispositivo que permite conocer el grado de iluminación de un entorno concreto. Los sensores de luminosidad suelen estar conectados a otros dispositivos, que son los receptores de esta información respecto a la luminosidad ambiental detectada y, a partir de esta información, actúan de un modo u otro.</p>
-                <img src="./img/luminico1.jpg">
-                <img src="./img/luminico2.jpg">
-            </div>
-        </ul>
+        <div class="todo">
+            <h2 class="textInfo">Información sobre los tipos de componentes (vistos anteriormente).</h2>
+            <ul>
+                <div class="bloques" id="bloque1">
+                    <li><h3 class="textIn">Sensor de temperatura</h3></li>
+                    <img class="imgs" src="./img/tipostemperatura.jpg">
+                    <p class="textOn">La detección de temperatura es la base de todas las formas avanzadas de control de temperatura y compensación. El circuito de detección de temperatura monitorea la temperatura ambiente. Luego puede notificar al sistema la temperatura.</p>
+                </div>
+                <div class="bloques" id="bloque2">
+                    <li><h3 class="textIn">Sensor de proximidad</h3></li>
+                    <img class="imgs" src="./img/proximidad1.jpg">
+                    <p class="textOn">Los sensores de proximidad inductivos representan el mayor volumen de ventas. Integran un circuito oscilante que genera un campo electromagnético. Cualquier pieza metálica que se aproxime a ellos será detectada al fluir.</p>
+                </div>
+                <div class="bloques" id="bloque3">
+                    <li><h3 class="textIn">Sensor lumínico</h3></li>
+                    <img class="imgs" src="./img/luminico1.jpg">
+                    <p class="textOn">Un sensor de luminosidad es un dispositivo que permite conocer el grado de iluminación de un entorno concreto. Los sensores de luminosidad suelen estar conectados a otros dispositivos, que son los receptores de esta información.</p>
+                </div>
+            </ul>
+        </div>
     </main>
     <footer>
-        <div class="footer">
+        <div class="footerInfo">
             <p class="copi">Página creada por Álvaro ® 2022 K36 </p>
             <a href="https://infovaroblog.wordpress.com/"><img src="./img/wordpress.png" width="35" height="35"></a>
         </div>

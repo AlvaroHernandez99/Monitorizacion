@@ -1,3 +1,4 @@
+//Funcion que se ejecuta justo al abrir la ventana.
 window.onload = () => {
     insertarFila();
 }
@@ -16,7 +17,8 @@ const elementos =
         "descripcion":"cuando se acerca alguien pita",
         "numero de serie":"334334",
         "estado":"activo",
-        "prioridad":"alta"},
+        "prioridad":"alta"
+    },
     {
         "nombre":"Sensor lumínico",
         "descripcion":"cuando se hace sol se apaga",
@@ -28,10 +30,10 @@ const elementos =
 
 
 function insertarFila(){
-    //Enseña los datos que le paso
+    //Recorre los objetos 
     for (let index = 0; index < elementos.length; index++) {
 
-        //Nuestro tbody vacio
+        //Seleccionamos el tbdoy que es donde vamos a insertar las filas
         let tbody=document.querySelector("#nuestrasFilas");
         const element = elementos[index];
 
@@ -39,7 +41,9 @@ function insertarFila(){
         const cuerpoTr = document.createElement("tr");
         
         ////////////////////////////////////////////////////////////
+        // A cada elementos del tr le damos la clase a, para posteriormente trabajar con ella
         cuerpoTr.setAttribute("class", "a");
+        cuerpoTr.setAttribute("id", "fila"[index]);
         //
         tbody.appendChild(cuerpoTr);
 
@@ -79,7 +83,6 @@ function insertarFila(){
         // PARA BORRAR FILAS
         function borrarFila(){
             let fila = tbody.removeChild(cuerpoTr);
-            /* document.fila.parentElement.remove(); */
             fila.remove();
         } 
     }
@@ -88,18 +91,8 @@ function insertarFila(){
 document.getElementById("buscador").addEventListener("keyup", filtrarResult);
 
 function filtrarResult(){
-
-    //Array con el NodeList de los 3 nombres
-    nombresElementos = document.querySelectorAll(".names");
-    //console.log(nombresElementos);
-
-    //Array con el NodeList de las 3 desc
-    descsElementos = document.querySelectorAll(".descs"); 
-    //console.log(descsElementos);
-    
     //selecciono la clase a (los tr)
     const claseA = document.querySelectorAll(".a");
-    //console.log(claseA);
 
     //ME recoge lo que le paso al input por cada letra que le paso
     document.addEventListener("keyup", e =>{
@@ -108,36 +101,21 @@ function filtrarResult(){
             buscadorInput = (e.target.value).toLowerCase();
             //BUSCA A PARTIR DE LA TERCERA 
             if (buscadorInput.length >= 3) {
-
                 for (let i = 0; i < elementos.length; i++) {
-                    
+                    //Con la función includes comprobamos si una cadena está dentro de otra, con eso hacemos la comparación
                     if(elementos[i].nombre.toLowerCase().includes(buscadorInput) || elementos[i].descripcion.toLowerCase().includes(buscadorInput) ){
-                        //console.log(elementos[i].nombre);
-                        //console.log(elementos[i].descripcion);
                         datos.textContent.toLowerCase().includes(buscadorInput)
                         //if
                         ? datos.classList.remove('filtro')
                         //else  --> Se añade el filtro para esconder los resultados no buscados
                         : datos.classList.add('filtro'); 
                         console.log("Elemento encontrado");
-                    /* }else{
-                        //Hacer que cuando no haya nada en el input que la recargue
-                        console.log("Elemento no encontrado");
-
-                        buscar = document.querySelector("#buscador");
-                        if(buscar.value == ""){
-                            console.log("eeee");
-                        }*/
                     } 
-                } 
+                }
             }else if(buscadorInput.length == 0){
-                console.log("vacio");
+                //console.log("vacio");
                 datos.classList.remove('filtro');
             }
         })
     })
-}
-
-function recargarPagina(){
-    window.location.reload();
 }

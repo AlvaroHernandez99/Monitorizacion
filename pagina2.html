@@ -8,6 +8,7 @@
     <link rel="shortcut icon" href="./img/dana.jpg" type="image/x-icon">
     <meta name="description" content="Primera Web de monitorizacion iundustrial">
     <link rel="stylesheet" href="./css/styleShared.css">
+    <link rel="stylesheet" href="./css/styleTabla.css">
     <script defer src="./js/js.js"></script>
     <title>Monitorización</title>
 </head>
@@ -24,27 +25,26 @@
         </div>
     </header>
     <main>
-        <h2>Tabla con los datos registrados: </h2>
-        <input type="text" name="buscador" id="buscador" placeholder="Filtrar">
-        <table id="tablaElemento" border="1">
-            <thead>
-                <tr>
-                    <th>Acciones</th>
-                    <th>Nombre del elemento</th>
-                    <th>Descripción del elemento</th>
-                    <th>Número de serie del elemento</th>
-                    <th>Estado del elemento</th>
-                    <th>Prioridad del elemento</th>
-                </tr>
-            </thead>
-            <tbody id="nuestrasFilas">
-
-            </tbody>
-
-        </table>
+        <div class="todaTabla">
+            <h2 id="textTabla">Tabla con los datos registrados</h2>
+            <input type="text" name="buscador" id="buscador" placeholder=" Filtrar por nombre o descripción">
+            <table id="tablaElemento" border="1">
+                <thead>
+                    <tr>
+                        <th>Acciones</th>
+                        <th>Nombre del elemento</th>
+                        <th>Descripción del elemento</th>
+                        <th>Número de serie del elemento</th>
+                        <th>Estado del elemento</th>
+                        <th>Prioridad del elemento</th>
+                    </tr>
+                </thead>
+                <tbody id="nuestrasFilas"></tbody>
+            </table>
+        </div>
     </main>
     <footer>
-        <div class="footer">
+        <div class="footerTabla">
             <p class="copi">Página creada por Álvaro ® 2022 K36 </p>
             <a href="https://infovaroblog.wordpress.com/"><img src="./img/wordpress.png" width="35" height="35"></a>
         </div>
