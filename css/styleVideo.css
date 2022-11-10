@@ -1,0 +1,74 @@
+h1, h2{
+    text-decoration: underline;
+}
+
+.todo{
+    background-color: #0564679f;
+    margin-top: 2vw;
+    margin-right: 2vw;
+    margin-left: 2vw;
+    margin-bottom: 2vw;
+    border-radius: 10vw;
+    min-height: 53vw;
+    padding: 1vw;
+}
+
+#textVideo{
+    margin-top: 1vw;
+    margin-bottom: 2vw;
+    text-align: center;
+}
+.textDiv{
+    padding: 2vw;
+    
+}
+
+
+.iframe-video, .audio-podcast{
+    align-items: center;
+    display: flex;
+    margin-top: 4vw;
+}
+
+.pVideo{
+    width: 40vw;
+    height: 20vw;
+    margin-left: 3vw;
+    font-size: 18px;
+}
+
+iframe{
+    margin-top: -17vw;
+    margin-left: 10vw;
+    width: 25vw;
+    height: 15vw;
+    border-radius: 2vw;
+}
+
+audio{
+    margin-top: -15vw;
+    margin-left: 13vw;
+}
+
+.video, .podcast{
+    background-color:#ffffff9f ;
+    border-radius: 4vw;
+    margin-left: 4vw;
+    margin-right: 4vw;
+    text-align: center;
+    margin-top: 1vw;
+    max-height: 22vw;
+}
+
+
+
+.footerPost{
+    font-family: Arial, sans-serif;
+    font-size: 15px;
+    color: black;
+    background: #0564679f;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0;
+}

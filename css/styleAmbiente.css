@@ -1,0 +1,17 @@
+#textMedio{
+    text-align: center;
+}
+
+h1, h2{
+    text-decoration: underline;
+}
+
+.footerMedio{
+    font-family: Arial, sans-serif;
+    font-size: 15px;
+    color: black;
+    background: #0564679f;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

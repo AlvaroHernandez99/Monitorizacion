@@ -1,0 +1,64 @@
+h1, h2{
+    text-decoration: underline;
+}
+.todaTabla{
+    align-items: center;
+    min-height: 20vw;
+    min-width: 60vw;
+    background: #0564679f;
+    margin-left: 15vw;
+    margin-right: 30vw; 
+    margin-top: 6vw;
+    padding: 4vw;
+    border-radius: 8vw;
+}
+
+#buscador{
+    margin-bottom: 0.5vw;
+    margin-left: 1vw;
+    width: 60%;
+	background: #ffffff9f;
+    border-radius: 10px;
+    margin-left: 11.5vw;
+    text-align: center;
+}
+
+/* TABLA */
+#tablaElemento{
+    background: #ffffff9f; 
+    padding: 30px;
+    border-radius: 40px ;
+    min-height: 20vw;
+    min-width: 50vw;
+    text-align: center;
+}
+/* Dar ancho a cada td, no a toda la tabla para que no se vea asi */
+#textTabla{
+    text-align: center;
+    margin-top: -3vw; 
+    margin-bottom: 1vw;
+}
+
+thead tr {
+    background-color: #0564679f;
+}
+
+button{
+    height: 4vw;
+    width: 100%;
+}
+
+button:hover{
+    background-color:#0564679f;
+}
+
+.footerTabla{
+    font-family: Arial, sans-serif;
+    font-size: 15px;
+    color: black;
+    background: #0564679f;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 6.5vw;
+}
