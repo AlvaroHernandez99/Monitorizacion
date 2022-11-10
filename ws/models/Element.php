@@ -1,6 +1,7 @@
 <?php
-require_once "./interfaces/IToJson.php"; 
-require_once "./createElement.php";
+include_once ("interfaces/IToJson.php"); 
+//include_once ("createElement.php");
+
 
 class Element implements IToJson{
     public $name;

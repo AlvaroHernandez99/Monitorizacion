@@ -1,7 +1,7 @@
 <?php
 
-require_once( "./interfaces/IToJson.php");
-require_once ("./models/Element.php");
+include_once ("interfaces/IToJson.php");
+include_once ("models/Element.php");
 
 
 

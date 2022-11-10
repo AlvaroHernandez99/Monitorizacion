@@ -5,45 +5,44 @@ window.onload = () => {
 ///////////////////////////////////////// METER ESTOS ELEMTOS EN LA TABLA PARA QUE SE QUEDEN PREDETERMINADOS ////////////////
 //prueba array con elementos
 const elementos =
-[   {
-        "nombre":"Termómetro",
-        "descripcion":"Mide la temperatura",
-        "numero de serie":"2342342",
-        "estado":"activo",
-        "prioridad":"media"
-    }, 
-    {
-        "nombre":"Sensor Proximidad",
-        "descripcion":"cuando se acerca alguien pita",
-        "numero de serie":"334334",
-        "estado":"activo",
-        "prioridad":"alta"
+    [{
+        "nombre": "Termómetro",
+        "descripcion": "Mide la temperatura",
+        "numero de serie": "2342342",
+        "estado": "activo",
+        "prioridad": "media"
     },
     {
-        "nombre":"Sensor lumínico",
-        "descripcion":"cuando se hace sol se apaga",
-        "numero de serie":"5464564",
-        "estado":"inactivo",
-        "prioridad":"baja"
+        "nombre": "Sensor Proximidad",
+        "descripcion": "cuando se acerca alguien pita",
+        "numero de serie": "334334",
+        "estado": "activo",
+        "prioridad": "alta"
+    },
+    {
+        "nombre": "Sensor lumínico",
+        "descripcion": "cuando se hace sol se apaga",
+        "numero de serie": "5464564",
+        "estado": "inactivo",
+        "prioridad": "baja"
     }
-];
+    ];
 
 
-function insertarFila(){
+function insertarFila() {
     //Recorre los objetos 
     for (let index = 0; index < elementos.length; index++) {
-
         //Seleccionamos el tbdoy que es donde vamos a insertar las filas
-        let tbody=document.querySelector("#nuestrasFilas");
+        let tbody = document.querySelector("#nuestrasFilas");
         const element = elementos[index];
 
         //creamos tr y lo metemos dentro de la tabla
         const cuerpoTr = document.createElement("tr");
-        
+
         ////////////////////////////////////////////////////////////
         // A cada elementos del tr le damos la clase a, para posteriormente trabajar con ella
         cuerpoTr.setAttribute("class", "a");
-        cuerpoTr.setAttribute("id", "fila"[index]);
+        cuerpoTr.setAttribute("id", "fila" + index);
         //
         tbody.appendChild(cuerpoTr);
 
@@ -81,38 +80,37 @@ function insertarFila(){
         cuerpoTdPrio.textContent = element.prioridad;
 
         // PARA BORRAR FILAS
-        function borrarFila(){
-            let fila = tbody.removeChild(cuerpoTr);
-            fila.remove();
-        } 
+        function borrarFila() {
+             tbody.removeChild(cuerpoTr);
+        }
     }
 }
 
 document.getElementById("buscador").addEventListener("keyup", filtrarResult);
 
-function filtrarResult(){
-    //selecciono la clase a (los tr)
+function filtrarResult() {
+    //selecciono la clase a (los tr), que es donde va a buscar todos los datos que le vamos pansando
     const claseA = document.querySelectorAll(".a");
 
     //ME recoge lo que le paso al input por cada letra que le paso
-    document.addEventListener("keyup", e =>{
-        //console.log(e.target.value); -> Saca por consola lo que le meto al imput
-        claseA.forEach(datos =>{
+    document.addEventListener("keyup", e => {
+        //console.log(e.target.value); -> Saca por consola lo que le meto al input
+        claseA.forEach(datos => {
             buscadorInput = (e.target.value).toLowerCase();
             //BUSCA A PARTIR DE LA TERCERA 
             if (buscadorInput.length >= 3) {
                 for (let i = 0; i < elementos.length; i++) {
                     //Con la función includes comprobamos si una cadena está dentro de otra, con eso hacemos la comparación
-                    if(elementos[i].nombre.toLowerCase().includes(buscadorInput) || elementos[i].descripcion.toLowerCase().includes(buscadorInput) ){
+                    if (elementos[i].nombre.toLowerCase().includes(buscadorInput) || elementos[i].descripcion.toLowerCase().includes(buscadorInput)) {
                         datos.textContent.toLowerCase().includes(buscadorInput)
-                        //if
-                        ? datos.classList.remove('filtro')
-                        //else  --> Se añade el filtro para esconder los resultados no buscados
-                        : datos.classList.add('filtro'); 
+                            //if
+                            ? datos.classList.remove('filtro')
+                            //else  --> Se añade el filtro para esconder los resultados no buscados
+                            : datos.classList.add('filtro');
                         console.log("Elemento encontrado");
-                    } 
+                    }
                 }
-            }else if(buscadorInput.length == 0){
+            } else if (buscadorInput.length == 0) {
                 //console.log("vacio");
                 datos.classList.remove('filtro');
             }
