@@ -25,12 +25,7 @@ switch ($priority) {
     case "Alta":
         $priority = "Alta";
     break;
-    default:
-        $priority = "Baja";
-    break;
 }
-
-
 
 
 // CONSULTA PREPARADA
@@ -63,7 +58,7 @@ function insertarElemento($pdo, $consultaInsertar, $name, $description, $serialN
             return $resultados;
         }
     }catch (PDOException $e){
-        echo $e;
+        return null;
     }
 }
 

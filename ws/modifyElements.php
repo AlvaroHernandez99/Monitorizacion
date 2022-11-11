@@ -7,12 +7,12 @@ include_once "Respuesta.php";
 $conect = Conexion::conectar();
 $miPdo = $conect->getPdo();
 
-$id = $_GET['id'];
-$name = $_POST["nombre"]?? "patata";
-$description = $_POST["desc"] ?? "gaming";
-$serialNumber = $_POST["numSer"]?? "1234";
-$condition =  $_POST["estado"]?? "jodido";
-$priority =  $_POST["igual"]?? null;
+$id = $_GET['id'] ?? null;
+$name = $_POST["nombre"] ?? null;
+$description = $_POST["desc"] ?? null;
+$serialNumber = $_POST["numSer"] ?? null;
+$condition =  $_POST["estado"] ?? null;
+$priority =  $_POST["igual"] ?? null;
 switch ($priority) {
     case "Bajo":
         $priority = "Baja";
@@ -24,11 +24,10 @@ switch ($priority) {
         $priority = "Alta";
     break;
     //Si lo dejo, siempre me va a coger la por defecto
-     default:
+    /* default:
         $priority = "sinrep"; 
-    break;
+    break; */
 }
-
 
 //comprobacion para saber si le has pasado un id
 if(!empty($_GET['id'])){
@@ -43,9 +42,10 @@ if(!empty($_GET['id'])){
                             nserie = :numSer,
                             estado = :estado, 
                             prioridad = :igual where id = :id");
+                            
         $comprobarUpdate = modificarDatos($miPdo, $consultaUpdate, $name, $description, $serialNumber, $condition, $priority, $id);
         $consultarExistencia = "SELECT * FROM elementos WHERE id = ?";
-        $comprobacionExistencia = modificarSiExiste($miPdo, $consultarExistencia, $id);
+        $comprobacionExistencia = comprobarSiExiste($miPdo, $consultarExistencia, $id);
         print_r(Respuesta::mensaje(True, "Usuario encontrado y datos actualizados", $comprobacionExistencia));
     }else{
         print_r(Respuesta::mensaje(False, "El id introducido no existe en la base de datos", null));
@@ -54,10 +54,8 @@ if(!empty($_GET['id'])){
     print_r(Respuesta::mensaje(False, "Elemento no encontrado, seleccione un id", null));
 }
 
-
-
 //Muestra los datos si existe en la bd
-function modificarSiExiste($pdo, $consultaAEjecutar, $id){
+function comprobarSiExiste($pdo, $consultaAEjecutar, $id){
     try{
         $consultaAEjecutar = $pdo->prepare("SELECT * FROM elementos WHERE id = ?");
         $consultaAEjecutar->execute([$id]);
@@ -69,7 +67,7 @@ function modificarSiExiste($pdo, $consultaAEjecutar, $id){
 } 
 
 
-function modificarDatos($pdo, $consultaUpdate, $name, $description, $serialNumber, $condition, $priority, $id){
+/* function modificarDatos($pdo, $consultaUpdate, $name, $description, $serialNumber, $condition, $priority, $id){
     $consultaUpdate = ("UPDATE elementos SET 
                             nombre = :nombre, 
                             descripcion = :desc, 
@@ -86,42 +84,55 @@ function modificarDatos($pdo, $consultaUpdate, $name, $description, $serialNumbe
     $consultaAEjecutar->bindParam(':igual', $priority, PDO::PARAM_STR);  
     $consultaAEjecutar->bindParam(':id', $id, PDO::PARAM_INT);
     $exe = $consultaAEjecutar->execute();
-}  
+}   */
 
 
 
 
 // PRUEBAS PARA QUE CUANDO UN CAMPO ESTÉ VACIO QUE LO DEJE COMO ESTABA
 
-/* function modificarDatos($pdo, $consultaUpdate, $name, $description, $serialNumber, $condition, $priority, $id){
-
+function modificarDatos($pdo, $consultaUpdate, $name, $description, $serialNumber, $condition, $priority, $id){
     $consultaUpdate = ("UPDATE elementos SET 
                             nombre = :nombre, 
                             descripcion = :desc, 
                             nserie = :numSer,
                             estado = :estado, 
                             prioridad = :igual where id = :id");
-
     $consultaAEjecutar = $pdo->prepare($consultaUpdate);
-    
-    
-    $consultaAEjecutar->bindParam(':desc', $description, PDO::PARAM_STR);
-    $consultaAEjecutar->bindParam(':numSer', $serialNumber, PDO::PARAM_STR);
-    $consultaAEjecutar->bindParam(':estado', $condition, PDO::PARAM_STR);
-    $consultaAEjecutar->bindParam(':igual', $priority, PDO::PARAM_STR);  
+
+    $elemento = comprobarSiExiste($pdo, $consultaAEjecutar, $id, $name, $description, $serialNumber, $condition, $priority);
+
+    foreach($elemento as $e){
+        if($name !== null){
+            $consultaAEjecutar->bindParam(':nombre', $name, PDO::PARAM_STR);
+        }else{
+            $consultaAEjecutar->bindParam(':nombre', $e['nombre'], PDO::PARAM_STR);
+        }
+        if($description !== null){
+            $consultaAEjecutar->bindParam(':desc', $description, PDO::PARAM_STR);
+        }else{
+            $consultaAEjecutar->bindParam(':desc', $e['descripcion'], PDO::PARAM_STR);
+        }
+        if($serialNumber !== null){
+            $consultaAEjecutar->bindParam(':numSer', $serialNumber, PDO::PARAM_STR);
+        }else{
+            $consultaAEjecutar->bindParam(':numSer', $e['nserie'], PDO::PARAM_STR);
+        }
+        if($condition !== null){
+            $consultaAEjecutar->bindParam(':estado', $condition, PDO::PARAM_STR);
+        }else{
+            $consultaAEjecutar->bindParam(':estado', $e['estado'], PDO::PARAM_STR);
+        }
+        if($priority !== null){
+            $consultaAEjecutar->bindParam(':igual', $priority, PDO::PARAM_STR);
+        }else{
+            $consultaAEjecutar->bindParam(':igual', $e['prioridad'], PDO::PARAM_STR);
+        }
+    }
+
     $consultaAEjecutar->bindParam(':id', $id, PDO::PARAM_INT);
-    
-// SI ALGUNO NO VIENE POR EL IMPUT DEJARLO COMO ESTÁ
-
-if(!empty($name = $_POST["nombre"])){
-    $consultaAEjecutar->bindParam(':nombre', $name, PDO::PARAM_STR);
-}else{
-    
-}
-
-
-$exe = $consultaAEjecutar->execute();
-
-}  */
+    $exe = $consultaAEjecutar->execute();
+    return $exe;
+}  
 
 
