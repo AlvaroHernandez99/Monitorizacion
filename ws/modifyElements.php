@@ -23,13 +23,8 @@ switch ($priority) {
     case "Alta":
         $priority = "Alta";
     break;
-    //Si lo dejo, siempre me va a coger la por defecto
-    /* default:
-        $priority = "sinrep"; 
-    break; */
 }
 
-//comprobacion para saber si le has pasado un id
 if(!empty($_GET['id'])){
     $respuesta = $miPdo->prepare('SELECT COUNT(*) as filas FROM elementos WHERE id = :id');
     $respuesta->bindParam(':id', $id, PDO::PARAM_INT);
@@ -66,30 +61,6 @@ function comprobarSiExiste($pdo, $consultaAEjecutar, $id){
     }
 } 
 
-
-/* function modificarDatos($pdo, $consultaUpdate, $name, $description, $serialNumber, $condition, $priority, $id){
-    $consultaUpdate = ("UPDATE elementos SET 
-                            nombre = :nombre, 
-                            descripcion = :desc, 
-                            nserie = :numSer,
-                            estado = :estado, 
-                            prioridad = :igual where id = :id");
-
-    $consultaAEjecutar = $pdo->prepare($consultaUpdate);
-    
-    $consultaAEjecutar->bindParam(':nombre', $name, PDO::PARAM_STR);
-    $consultaAEjecutar->bindParam(':desc', $description, PDO::PARAM_STR);
-    $consultaAEjecutar->bindParam(':numSer', $serialNumber, PDO::PARAM_STR);
-    $consultaAEjecutar->bindParam(':estado', $condition, PDO::PARAM_STR);
-    $consultaAEjecutar->bindParam(':igual', $priority, PDO::PARAM_STR);  
-    $consultaAEjecutar->bindParam(':id', $id, PDO::PARAM_INT);
-    $exe = $consultaAEjecutar->execute();
-}   */
-
-
-
-
-// PRUEBAS PARA QUE CUANDO UN CAMPO ESTÉ VACIO QUE LO DEJE COMO ESTABA
 
 function modificarDatos($pdo, $consultaUpdate, $name, $description, $serialNumber, $condition, $priority, $id){
     $consultaUpdate = ("UPDATE elementos SET 

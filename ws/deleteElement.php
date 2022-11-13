@@ -9,8 +9,6 @@ $miPdo = $conect->getPdo();
 
 $id = $_GET['id'] ?? null;
 
-
-
 if((!empty($_GET['id']))){ 
 
     $consultaComprobarSiExiste = "SELECT * FROM elementos WHERE id = ?";
@@ -32,12 +30,8 @@ if((!empty($_GET['id']))){
 }
 
 
-
-
 // funciones preparadas
 function borrarElemeto($pdo, $consultaAEjecutar, $id){
-    //esto sería el input
-    
     try{
         $consultaAEjecutar = $pdo->prepare("DELETE FROM elementos WHERE id = ?");
         $consultaAEjecutar->execute([$id]);
@@ -51,8 +45,6 @@ function borrarElemeto($pdo, $consultaAEjecutar, $id){
         return null;
     }
 }
-
-
 
 function comprobarBD($pdo, $consultaAEjecutar, $id){
     //esto sería el input

@@ -5,11 +5,9 @@ include_once "interfaces/IToJson.php";
 include_once "./models/Element.php";
 include_once "Respuesta.php";
 
-//hacemos su conexion y le asignamos un nombre al pdo
 $conect = Conexion::conectar();
 $miPdo = $conect->getPdo();
 
-//LOS DEJO POR DEFECTO O LO PONGO A NULL??   <-----------------------------
 $name = $_POST["nombre"] ?? "PC";
 $description = $_POST["desc"] ?? "GAMING";
 $serialNumber = $_POST["numSer"] ?? "1234";
