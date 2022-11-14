@@ -3,9 +3,18 @@ include_once "BaseDatos.php";
 include_once "Conexion.php";
 include_once "Respuesta.php";
 
-//hacemos su conexion y le asignamos un nombre al pdo
 $conect = Conexion::conectar();
-$miPdo = $conect->getPdo();
+
+try{
+    if($conect === null){
+        echo Respuesta::mensaje(False, "No se ha conseguido establecer conexión con la db", null);
+        die;
+    }else{
+        $miPdo = $conect->getPdo(); 
+    }
+}catch(Exception $e){
+    return null;
+}
 
 $id = $_GET['id'] ?? null;
 $name = $_POST["nombre"] ?? null;
@@ -30,7 +39,6 @@ if(!empty($_GET['id'])){
     $respuesta->bindParam(':id', $id, PDO::PARAM_INT);
     $respuesta->execute();
     if($respuesta->fetchColumn() > 0){
-        //Una vez que nos ha mostrado los datos, que los nuevos introducidos nos los cambie en la db
         $consultaUpdate = ("UPDATE elementos SET 
                             nombre = :nombre, 
                             descripcion = :desc, 
@@ -41,12 +49,12 @@ if(!empty($_GET['id'])){
         $comprobarUpdate = modificarDatos($miPdo, $consultaUpdate, $name, $description, $serialNumber, $condition, $priority, $id);
         $consultarExistencia = "SELECT * FROM elementos WHERE id = ?";
         $comprobacionExistencia = comprobarSiExiste($miPdo, $consultarExistencia, $id);
-        print_r(Respuesta::mensaje(True, "Usuario encontrado y datos actualizados", $comprobacionExistencia));
+        echo Respuesta::mensaje(True, "Usuario encontrado y datos actualizados", $comprobacionExistencia);
     }else{
-        print_r(Respuesta::mensaje(False, "El id introducido no existe en la base de datos", null));
+        echo Respuesta::mensaje(False, "El id ". $id ." no existe en la base de datos", null);
     }
 }else{
-    print_r(Respuesta::mensaje(False, "Elemento no encontrado, seleccione un id", null));
+    echo Respuesta::mensaje(False, "Elemento no encontrado, seleccione un id", null);
 }
 
 //Muestra los datos si existe en la bd
@@ -60,7 +68,6 @@ function comprobarSiExiste($pdo, $consultaAEjecutar, $id){
         return null;
     }
 } 
-
 
 function modificarDatos($pdo, $consultaUpdate, $name, $description, $serialNumber, $condition, $priority, $id){
     $consultaUpdate = ("UPDATE elementos SET 
@@ -104,6 +111,7 @@ function modificarDatos($pdo, $consultaUpdate, $name, $description, $serialNumbe
     $consultaAEjecutar->bindParam(':id', $id, PDO::PARAM_INT);
     $exe = $consultaAEjecutar->execute();
     return $exe;
-}  
+}
+?>
 
 

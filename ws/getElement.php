@@ -5,10 +5,19 @@ include_once "./models/Element.php";
 include_once "Respuesta.php";
 
 $conect = Conexion::conectar();
-$miPdo = $conect->getPdo();
+
+try{
+    if($conect === null){
+        echo Respuesta::mensaje(False, "No se ha conseguido establecer conexión con la db", null);
+        die;
+    }else{
+        $miPdo = $conect->getPdo(); 
+    }
+}catch(Exception $e){
+    return null;
+}
 
 $id = $_GET['id'] ?? null;
-
 
 if(!empty($_GET['id'])){
     $consultaPreparada = 'SELECT * FROM elementos WHERE id = ?';
@@ -16,17 +25,15 @@ if(!empty($_GET['id'])){
 }else{
     $consultaMostrarTodo = 'SELECT * FROM elementos';
     $ejerConsulta = mostrarTodo($miPdo, $consultaMostrarTodo);  
-} 
-
+}
 if(empty($ejerConsulta)){
-    print_r(Respuesta::mensaje(False, "Elemento no encointrado", null));
+    echo Respuesta::mensaje(False, "Elemento no encontrado", null);
 }else{
-    print_r(Respuesta::mensaje(True, "Elemento encointrado", $ejerConsulta));
+    echo Respuesta::mensaje(True, "Elemento encontrado", $ejerConsulta);
 }
 
 
 function ejercutarConsultaPreparada($pdo, $consultaAEjecutar, $id){
-    //esto sería el input
     try{
         $consultaAEjecutar = $pdo->prepare("SELECT * FROM elementos WHERE id = ?");
         $consultaAEjecutar->execute([$id]);
@@ -36,7 +43,6 @@ function ejercutarConsultaPreparada($pdo, $consultaAEjecutar, $id){
         return null;
     }
 }
-
 
 function mostrarTodo($pdo, $consultaAEjecutar){
     try{

@@ -6,13 +6,23 @@ include_once "./models/Element.php";
 include_once "Respuesta.php";
 
 $conect = Conexion::conectar();
-$miPdo = $conect->getPdo();
 
-$name = $_POST["nombre"] ?? "PC";
-$description = $_POST["desc"] ?? "GAMING";
+try{
+    if($conect === null){
+        echo Respuesta::mensaje(False, "No se ha conseguido establecer conexión con la db", null);
+        die;
+    }else{
+        $miPdo = $conect->getPdo(); 
+    }
+}catch(Exception $e){
+    return null;
+}
+
+$name = $_POST["nombre"] ?? "Patata";
+$description = $_POST["desc"] ?? "Gaming";
 $serialNumber = $_POST["numSer"] ?? "1234";
-$condition =  $_POST["estado"] ?? "ActivoPAPI";
-$priority =  $_POST["igual"] ?? "Baja";
+$condition =  $_POST["estado"] ?? "Activo";
+$priority =  $_POST["igual"] ?? "Alta";
 switch ($priority) {
     case "Bajo":
         $priority = "Baja";
@@ -25,19 +35,10 @@ switch ($priority) {
     break;
 }
 
-
-// CONSULTA PREPARADA
 $consultaInsertar = ("INSERT INTO elementos (nombre, descripcion, nserie, estado, prioridad) VALUES
                     (:nombre, :desc, :numSer, :estado, :igual)");
 $comprobacionExistencia = insertarElemento($miPdo, $consultaInsertar, $name, $description, $serialNumber, $condition, $priority);
-
-print_r(Respuesta::mensaje(True, "Nuevo elemento creado en la bd", $comprobacionExistencia));
-
-
-/////////////////////////
-
-//$elementoUno = new Element($name, $description, $serialNumber, $condition, $priority);
-
+echo Respuesta::mensaje(True, "Nuevo elemento creado en la bd", $comprobacionExistencia);
 
 function insertarElemento($pdo, $consultaInsertar, $name, $description, $serialNumber, $condition, $priority){
     try{
@@ -56,13 +57,9 @@ function insertarElemento($pdo, $consultaInsertar, $name, $description, $serialN
             return $resultados;
         }
     }catch (PDOException $e){
-        return null;
+        return null; 
     }
 }
-
-
-
-
 
 ?>
 
