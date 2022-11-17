@@ -49,12 +49,15 @@ function insertarFila() {
         //X
         const x = document.createElement("td");
         const button = document.createElement("button");
+        const botonG = document.createElement("button");
         cuerpoTr.appendChild(x);
         x.appendChild(button);
+        x.appendChild(botonG);
         button.textContent = "X";
+        botonG.textContent = "edit";
 
+        botonG.onclick = editTable;
         button.onclick = borrarFila;
-        /* button.addEventListener(click, borrarFila()); */
 
         //creamos td y lo metemos dentro del tr (nombre)
         const cuerpoTd = document.createElement("td");
@@ -81,12 +84,14 @@ function insertarFila() {
 
         // PARA BORRAR FILAS
         function borrarFila() {
-             tbody.removeChild(cuerpoTr);
+            tbody.removeChild(cuerpoTr);
         }
+
+        
     }
 }
 
-document.getElementById("buscador").addEventListener("keyup", filtrarResult);
+/* document.getElementById("buscador").addEventListener("keyup", filtrarResult);
 
 function filtrarResult() {
     //selecciono la clase a (los tr), que es donde va a buscar todos los datos que le vamos pansando
@@ -116,4 +121,26 @@ function filtrarResult() {
             }
         })
     })
+}
+ */
+
+
+/*  */
+function editTable(){
+    const fila0 = document.querySelector('#fila0');
+    const fila1 = document.querySelector('#fila1');
+    const fila2 = document.querySelector('#fila2');
+
+
+
+
+    /*  */
+
+    //Seleccionar contenido TD ---> HACER QUE ME LO CAMBIE
+    document.getElementById("tablaElemento").addEventListener("click", function (e) {
+        let valorTd = e.srcElement.innerHTML;
+        console.log(valorTd);
+        valorTd = valorTd.replace();
+    });
+
 }

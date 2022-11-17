@@ -18,8 +18,8 @@ h1, h2{
 .formulario{
     background: #ffffff9f; 
     padding: 20px;
-/*     transform: rotate(314deg);
- */ margin-top: 1vw;
+/*  transform: rotate(314deg);  */
+    margin-top: 1vw;
     border-radius: 40px ;
 }
 

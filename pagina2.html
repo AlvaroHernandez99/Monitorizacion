@@ -9,27 +9,18 @@
     <meta name="description" content="Primera Web de monitorizacion iundustrial">
     <link rel="stylesheet" href="./css/styleShared.css">
     <link rel="stylesheet" href="./css/styleTabla.css">
-    <script defer src="./js/js.js"></script>
+    <script src="./js/js.js"></script>
     <title>Monitorización</title>
 </head>
 <body>
-    <header>
-        <div class="menu-nav"> 
-            <ul>
-                <img id="dana" src="./img/dana.jpg" >
-                <li><a href="./index.html">Formulario</a></li>
-                <li><a href="./pagina3.html">Información General</a></li>
-                <li><a href="./pagina4.html">Información Medio Ambiente</a></li>
-                <li><a href="./pagina5.html">Vídeo informativo</a></li>
-            </ul>
-        </div>
+    <header id="header">
+        <script src="js/nav.js"></script>
     </header>
     <main>
         <div class="todaTabla">
             <h2 id="textTabla">Tabla con los datos registrados</h2>
             <input type="text" name="buscador" id="buscador" placeholder=" Filtrar por nombre o descripción">
             <table id="tablaElemento" border="1">
-                
                 <thead>
                     <tr>
                         <th>Acciones</th>
@@ -52,3 +43,5 @@
     </footer>
 </body>
 </html>
+
+

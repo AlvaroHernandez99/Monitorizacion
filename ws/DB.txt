@@ -12,5 +12,12 @@
         "numero de serie": "232",
         "estado": "activo",
         "prioridad": "alta"
+    },
+    {
+        "nombre": "asdsad",
+        "descripcion": "asdasd",
+        "numero de serie": "",
+        "estado": "no seleccionado",
+        "prioridad": null
     }
 ]

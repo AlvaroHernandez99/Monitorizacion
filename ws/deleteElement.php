@@ -3,11 +3,6 @@ include_once "BaseDatos.php";
 include_once "Conexion.php";
 include_once "Respuesta.php";
 
-/*  SI HAGO MAL LA CONEXION SI ME PETA CORREGIR!!!!! */
-/*$conect = Conexion::conectar();
-$miPdo = $conect->getPdo(); */
-
-
 $conect = Conexion::conectar();
 
 try{
@@ -20,9 +15,6 @@ try{
 }catch(Exception $e){
     return null;
 }
-
-
-
 
 $id = $_GET['id'] ?? null;
 
@@ -44,7 +36,6 @@ if((!empty($_GET['id']))){
     
 }
 
-// NO PETA
 function borrarElemeto($pdo, $consultaAEjecutar, $id){
     try{
         $consultaAEjecutar = $pdo->prepare("DELETE FROM elementos WHERE id = ?");
@@ -54,13 +45,10 @@ function borrarElemeto($pdo, $consultaAEjecutar, $id){
             return $re;
         } 
     }catch (PDOException $e){
-        /* $e = "consulta mal";
-        echo  $e; */
         return null;
     }
 }
 
-//NO PETA
 function comprobarBD($pdo, $consultaAEjecutar, $id){
     try{
         $consultaAEjecutar = $pdo->prepare("SELECT * FROM elementos WHERE id = ?");
@@ -68,8 +56,6 @@ function comprobarBD($pdo, $consultaAEjecutar, $id){
         $resultados = $consultaAEjecutar->fetchAll(PDO::FETCH_ASSOC);
         return $resultados;  
     }catch (PDOException $e){
-        /* $e = "consulta mal";
-        echo  $e; */
         return null;
     }
 }
