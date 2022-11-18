@@ -14,7 +14,7 @@ const elementos =
     },
     {
         "nombre": "Sensor Proximidad",
-        "descripcion": "cuando se acerca alguien pita",
+        "descripcion": "si se acerca alguien pita",
         "numero de serie": "334334",
         "estado": "activo",
         "prioridad": "alta"
@@ -51,17 +51,36 @@ function insertarFila() {
         const x = document.createElement("td");
         const button = document.createElement("button");
         const botonG = document.createElement("button");
+
+
         cuerpoTr.appendChild(x);
         x.appendChild(button);
         x.appendChild(botonG);
+
+
         button.textContent = "X";
         botonG.textContent = "edit";
         /* button.setAttribute("id", index); */
-        botonG.setAttribute("id", "celda"+index);
+        botonG.setAttribute("id", "a" + index);
+        botonG.setAttribute("class", "botonEdit");
+
+
+        //BOTON GUARDAR
+        let botonSave = document.createElement('button');
+        cuerpoTr.appendChild(x);
+        x.appendChild(botonSave);
+        botonSave.textContent = "guardar";
+        botonSave.setAttribute("class", "botonSave");
+        botonSave.setAttribute("id", "b" + index);
+        botonSave.style.display = "none";
+
+
 
         /* botonG.onclick = generarForm;  */
-        botonG.onclick = cambiarInput; 
+
         button.onclick = borrarFila;
+        botonG.onclick = cambiarInput;
+
 
         //creamos td y lo metemos dentro del tr (nombre)
         const cuerpoTd = document.createElement("td");
@@ -90,6 +109,45 @@ function insertarFila() {
         function borrarFila() {
             tbody.removeChild(cuerpoTr);
         }
+    }
+
+
+
+    function cambiarInput() {
+        //selecciono el id
+        let fila = this.parentNode.parentNode;
+        //console.log(fila);
+        //recorrer filas, i = 1 para que me ignore el boton
+        for (let i = 0; i < fila.cells.length; i++) {
+            //console.log(celda.innerHTML);
+            //pasar de td a input
+            let datos = fila.cells[i].innerHTML;
+            let input = document.createElement('input');
+            if (i === 0) {
+                fila.cells[i].innerHTML = "<button id='botonSave'>save</button>";
+            } else {
+                fila.cells[i].appendChild(input);
+                input.id = i;
+            }
+            input.value = datos;
+        }
+        let botonSave = document.querySelector("#botonSave");
+        botonSave.addEventListener("click", () => {
+            for (let i = 0; i < fila.cells.length; i++) {
+                if (i === 0) {
+                    fila.cells[i].innerHTML = "<button id='botonX'>X</button><button id='botonEdit'>Edit</button>";
+                } else {
+                    let input = document.getElementById(i);
+                    fila.cells[i].innerHTML = input.value;
+                }
+            }
+            const botonX = document.getElementById('botonX');
+            const botonEdit = document.getElementById('botonEdit');
+            botonX.onclick = () => {
+                fila.remove();
+            };
+            botonEdit.onclick = cambiarInput;
+        })
     }
 }
 
@@ -124,194 +182,11 @@ function filtrarResult() {
         })
     })
 }
+
+
+ //3. QUE ME AÑADA TODOS LOS CAMBIAOS A UN ARRAY PARA PODER TRABAJAR CON él
  
-function cambiarInput(){
-    //selecciono el id
-    let fila = this.parentNode.parentNode;
-    //console.log(fila);
-    //recorrer filas, i = 1 para que me ignore el boton
-    for (let i=1; i<fila.cells.length; i++) {
-        //console.log(celda.innerHTML);
-        //pasar de td a input
-        let datos = fila.cells[i].innerHTML;
-        let input = document.createElement('input');
-        fila.cells[i].appendChild(input);
-        input.value = datos;
-    }
-    
-}
-
-
-
- //1. CUANDO LE DE AL BOTON DE EDIT, QUE ME LO BORRE Y ME CREE UNO DE GUARDAR
-
- //2. CUANDO LE DE A ESE BOTON DE GUARDAR, QUE ME CAMBIE EL VALOR QUE HABÍAN ANTES POR LE VALOR DE LOS INPUTS
-
- //3. QUE ME AÑADA TODOS LOS CAMBIAOS A UN ARRAY PARA PODER TRABAJAR CON ELLOS
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
-
-/*  
-function editTable(){
-    const fila0 = document.querySelector('#fila0');
-    const fila1 = document.querySelector('#fila1');
-    const fila2 = document.querySelector('#fila2');
-     
-    //Seleccionar contenido TD ---> HACER QUE ME LO CAMBIE
-    document.getElementById("tablaElemento").addEventListener("click", function (e) {
-        let valorTd = e.srcElement.innerHTML;
-        
-        console.log(valorTd);
-    });
-}
-*/
-
-/* function generarForm(){
-
-    ////Crear el objeto formulario
-    let formulario=document.createElement("form");
-    ////Crear el objeto label de titulo
-    let titulo=document.createElement("label");
-    ////Crear el objeto caja de texto Nombres
-    let cajaTextNombres=document.createElement("input");
-    ////Crear el objeto caja de texto Apellidos
-    let cajaTextDescripcion=document.createElement("input");
-    ////Crear el objeto caja de texto Email
-    let cajaTextNSerie=document.createElement("input");
-    ////Crear el objeto caja de texto Asunto del Mensaje
-    let cajaTextEstado=document.createElement("input");
-    ////Crear el objeto caja de texto Asunto del Mensaje
-    let cajaTextPrioridad=document.createElement("input");
-    ////Crear el objeto boton
-    let boton=document.createElement("input");
-
-    ////Asignar atributos al objeto formulario
-    formulario.setAttribute('method', "");//Asignar el atributo method
-    formulario.setAttribute('action', "");//Asignar el atributo action
-    //formulario.setAttribute('style', "width:300px;margin: 0px auto");//Asignar el atributo style
-
-    ////Asignar atributos al objeto caja de texto de Nombres
-    cajaTextNombres.setAttribute('type', "text");//Asignar el atributo type
-    //cajaTextNombres.setAttribute('placeholder', "Nombres");//Asignar el atributo placeholder
-    cajaTextNombres.setAttribute('style', "width:100%;margin: 10px 0px;padding: 5px");//Asignar el atributo style
-
-    ////Asignar atributos al objeto caja de texto de Apellidos
-    cajaTextDescripcion.setAttribute('type', "text");//Asignar el atributo type
-    //cajaTextDescripcion.setAttribute('placeholder', "Descripción ");//Asignar el atributo placeholder
-    cajaTextDescripcion.setAttribute('style', "width:100%;margin: 10px 0px;padding: 5px");//Asignar el atributo style
-
-    ////Asignar atributos al objeto caja de texto de Email
-    cajaTextNSerie.setAttribute('type', "text");//Asignar el atributo type
-    //cajaTextNSerie.setAttribute('placeholder', "Número de serie");//Asignar el atributo placeholder
-    cajaTextNSerie.setAttribute('style', "width:100%;margin: 10px 0px;padding: 5px");//Asignar el atributo style
-
-    ////Asignar atributos al objeto caja de texto de Asunto
-    cajaTextEstado.setAttribute('type', "text");//Asignar el atributo type
-    //cajaTextEstado.setAttribute('placeholder', "Estado");//Asignar el atributo placeholder
-    cajaTextEstado.setAttribute('style', "width:100%;margin: 10px 0px;padding: 5px");//Asignar el atributo style
-
-    ////Asignar atributos al objeto caja de texto de Asunto
-    cajaTextPrioridad.setAttribute('type', "text");//Asignar el atributo type
-    //cajaTextPrioridad.setAttribute('placeholder', "Prioridad");//Asignar el atributo placeholder
-    cajaTextPrioridad.setAttribute('style', "width:100%;margin: 10px 0px;padding: 5px");//Asignar el atributo style
-
-    ////Asignar atributos al objeto boton
-    boton.setAttribute('type', "button");//Asignar el atributo type	
-    boton.setAttribute('value', "Guardar");//Asignar el atributo value
-    boton.setAttribute('style', "width:100px;margin: 10px 0px;padding: 10px;background:#F05133;color:#fff;border:solid 1px #000;");//Asignar el atributo style
-    //boton.setAttribute('onclick', "alert('DATOS GUARADADOS')");//Asignar el metodo onclick
-               
-    
-                    
-    // CUANDO LE DE A GUARDAR DATOS QUE ME ESCONDA EL FORMULARIO 
-    //boton.setAttribute('onclick', "formulario.style.display='none'");//Asignar el metodo onclick
-
-    titulo.innerHTML='<h1>Editar elemento</h1>';//Asignar el texto de titulo en el objeto titulo
-    formulario.appendChild(titulo);//Agregar el objeto titulo al objeto formulario
-    formulario.appendChild(cajaTextNombres);//Agregar el objeto caja de texto Nombres al objeto formulario
-    formulario.appendChild(cajaTextDescripcion);//Agregar el objeto caja de texto Apellidos al objeto formulario
-    formulario.appendChild(cajaTextNSerie);//Agregar el objeto caja de texto Email al objeto formulario
-    formulario.appendChild(cajaTextEstado);//Agregar el objeto caja de texto Asunto al objeto formulario
-    formulario.appendChild(cajaTextPrioridad);//Agregar el objeto area de texto del Mensaje al objeto formulario
-    formulario.appendChild(boton);//Agregar el objeto boton al objeto formulario
-    document.getElementById('header').appendChild(formulario);//Agregar el formulario a la etiquete con el ID	
-    
-           
-    
-    //Añadir los datos a los campos
-    for (const element of elementos) {
-
-        console.log(element.nombre);
-
-        cajaTextNombres.value = element.nombre;
-        cajaTextDescripcion.value = element.descripcion;
-        cajaTextNSerie.value = element["numero de serie"];
-        cajaTextEstado.value = element.estado;
-        cajaTextPrioridad.value = element.prioridad;
-
-
-    }
-
-   
-}
-
- */
-
+ //EN EL FOR SABER QUENUMERO DEL ARRAY TENGO, SI TENGO UNA FILA 0, LA POSICION DE LA FILA TIENE QUE SER LA 0
 
 
 
