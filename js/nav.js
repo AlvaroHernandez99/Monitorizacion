@@ -4,10 +4,10 @@ addEventListener('load', () => {
 
 function cargarNav() {
     fetch('nav.html')
-    .then(response => response.text())
-    .then((data) => {
+    .then(respuesta => respuesta.text())
+    .then((respuesta) => {
         const header = document.querySelector("#header");
-        header.innerHTML = data;
+        header.innerHTML = respuesta;
 
         const miUrl = '/segundo/DWES/primera/';
 
@@ -16,7 +16,6 @@ function cargarNav() {
             const index = document.querySelector("#index");
             index.style.backgroundColor = '#FF0000';
         }
-
         if(miUrl+'pagina2.html' == window.location.pathname){
             /* SELECCION Y CAMBIO DE COLOR A  PELO */
             const tabla = document.querySelector("#tabla");
