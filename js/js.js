@@ -40,7 +40,8 @@ function insertarFila() {
         const cuerpoTr = document.createElement("tr");
 
         ////////////////////////////////////////////////////////////
-        // A cada elementos del tr le damos la clase a, para posteriormente trabajar con ella
+        // A cada elementos del tr le damos la clase a, para posteriormente trabajar con ell
+
         cuerpoTr.setAttribute("class", "a");
         cuerpoTr.setAttribute("id", "fila" + index);
         //cuerpoTr.setAttribute("onclick", "generarForm(this);");
@@ -52,11 +53,9 @@ function insertarFila() {
         const button = document.createElement("button");
         const botonG = document.createElement("button");
 
-
         cuerpoTr.appendChild(x);
         x.appendChild(button);
         x.appendChild(botonG);
-
 
         button.textContent = "X";
         botonG.textContent = "edit";
@@ -64,9 +63,8 @@ function insertarFila() {
         botonG.setAttribute("id", "a" + index);
         botonG.setAttribute("class", "botonEdit");
 
-
         //BOTON GUARDAR
-        let botonSave = document.createElement('button');
+        const botonSave = document.createElement('button');
         cuerpoTr.appendChild(x);
         x.appendChild(botonSave);
         botonSave.textContent = "guardar";
@@ -74,14 +72,10 @@ function insertarFila() {
         botonSave.setAttribute("id", "b" + index);
         botonSave.style.display = "none";
 
-
-
-        /* botonG.onclick = generarForm;  */
-
         button.onclick = borrarFila;
         botonG.onclick = cambiarInput;
 
-
+        
         //creamos td y lo metemos dentro del tr (nombre)
         const cuerpoTd = document.createElement("td");
         cuerpoTr.appendChild(cuerpoTd);
@@ -110,46 +104,10 @@ function insertarFila() {
             tbody.removeChild(cuerpoTr);
         }
     }
-
-
-
-    function cambiarInput() {
-        //selecciono el id
-        let fila = this.parentNode.parentNode;
-        //console.log(fila);
-        //recorrer filas, i = 1 para que me ignore el boton
-        for (let i = 0; i < fila.cells.length; i++) {
-            //console.log(celda.innerHTML);
-            //pasar de td a input
-            let datos = fila.cells[i].innerHTML;
-            let input = document.createElement('input');
-            if (i === 0) {
-                fila.cells[i].innerHTML = "<button id='botonSave'>save</button>";
-            } else {
-                fila.cells[i].appendChild(input);
-                input.id = i;
-            }
-            input.value = datos;
-        }
-        let botonSave = document.querySelector("#botonSave");
-        botonSave.addEventListener("click", () => {
-            for (let i = 0; i < fila.cells.length; i++) {
-                if (i === 0) {
-                    fila.cells[i].innerHTML = "<button id='botonX'>X</button><button id='botonEdit'>Edit</button>";
-                } else {
-                    let input = document.getElementById(i);
-                    fila.cells[i].innerHTML = input.value;
-                }
-            }
-            const botonX = document.getElementById('botonX');
-            const botonEdit = document.getElementById('botonEdit');
-            botonX.onclick = () => {
-                fila.remove();
-            };
-            botonEdit.onclick = cambiarInput;
-        })
-    }
 }
+
+// ARREGLAR QUE ME VUELVA A FILTRAR
+// AÑADIR LOS CAMBIOS EN EL ARRAY PARA QUE ME BUSQUEN
 
 document.getElementById("buscador").addEventListener("keyup", filtrarResult);
 
@@ -169,10 +127,10 @@ function filtrarResult() {
                     if (elementos[i].nombre.toLowerCase().includes(buscadorInput) || elementos[i].descripcion.toLowerCase().includes(buscadorInput)) {
                         datos.textContent.toLowerCase().includes(buscadorInput)
                             //if
-                            ? datos.classList.remove('filtro')
+                        ? datos.classList.remove('filtro')
                             //else  --> Se añade el filtro para esconder los resultados no buscados
-                            : datos.classList.add('filtro');
-                        console.log("Elemento encontrado");
+                        : datos.classList.add('filtro');
+                        //console.log("Elemento encontrado");
                     }
                 }
             } else if (buscadorInput.length == 0) {
@@ -184,12 +142,39 @@ function filtrarResult() {
 }
 
 
- //3. QUE ME AÑADA TODOS LOS CAMBIAOS A UN ARRAY PARA PODER TRABAJAR CON él
- 
- //EN EL FOR SABER QUENUMERO DEL ARRAY TENGO, SI TENGO UNA FILA 0, LA POSICION DE LA FILA TIENE QUE SER LA 0
-
-
-
-
-
-
+ function cambiarInput() {
+    //selecciono el id
+    let fila = this.parentNode.parentNode;
+    //console.log(fila);
+    //recorrer filas, i = 1 para que me ignore el boton
+    for (let i = 0; i < fila.cells.length; i++) {
+        //console.log(celda.innerHTML);
+        //pasar de td a input
+        let datos = fila.cells[i].innerHTML;
+        let input = document.createElement('input');
+        if (i === 0) {
+            fila.cells[i].innerHTML = "<button id='botonSave'>save</button>";
+        } else {
+            fila.cells[i].appendChild(input);
+            input.id = i;
+        }
+        input.value = datos;
+    }
+    let botonSave = document.querySelector("#botonSave");
+    botonSave.addEventListener("click", () => {
+        for (let i = 0; i < fila.cells.length; i++) {
+            if (i === 0) {
+                fila.cells[i].innerHTML = "<button id='botonX'>X</button><button id='botonEdit'>edit</button>";
+            } else {
+                let input = document.getElementById(i);
+                fila.cells[i].innerHTML = input.value;
+            }
+        }
+        const botonX = document.getElementById('botonX');
+        const botonEdit = document.getElementById('botonEdit');
+        botonX.onclick = () => {
+            fila.remove();
+        };
+        botonEdit.onclick = cambiarInput;
+    })
+}
