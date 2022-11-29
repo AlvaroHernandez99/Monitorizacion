@@ -27,12 +27,12 @@ if((!empty($_GET['id']))){
 
      //SI el id se encuentra en la bd que me saque los datos por pantalla, si no, no existe
     if($comprobacionExistencia == true){
-        echo Respuesta::mensaje(True, "Elemento encontrado, se ha borrado correctamente", $comprobacionExistencia);
+        echo Respuesta::mensaje(true, "Elemento encontrado, se ha borrado correctamente", $comprobacionExistencia);
     }else{
-        echo Respuesta::mensaje(False, "Elemento no encontrado, el id ". $id ." no existente en la bd", null);
+        echo Respuesta::mensaje(false, "Elemento no encontrado, el id ". $id ." no existente en la bd", null);
     } 
 }else{
-    echo Respuesta::mensaje(False, "Elemento no encointrado, seleccione un id", null);
+    echo Respuesta::mensaje(false, "Elemento no encointrado, seleccione un id", null);
     
 }
 

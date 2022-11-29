@@ -1,117 +1,133 @@
-//Funcion que se ejecuta justo al abrir la ventana.
 window.onload = () => {
     insertarFila();
 }
-///////////////////////////////////////// METER ESTOS ELEMTOS EN LA TABLA PARA QUE SE QUEDEN PREDETERMINADOS ////////////////
-//prueba array con elementos
-const elementos =
-    [{
-        "nombre": "Termómetro",
-        "descripcion": "Mide la temperatura",
-        "numero de serie": "2342342",
-        "estado": "activo",
-        "prioridad": "media"
-    },
-    {
-        "nombre": "Sensor Proximidad",
-        "descripcion": "si se acerca alguien pita",
-        "numero de serie": "334334",
-        "estado": "activo",
-        "prioridad": "alta"
-    },
-    {
-        "nombre": "Sensor lumínico",
-        "descripcion": "cuando hace sol se apaga",
-        "numero de serie": "5464564",
-        "estado": "inactivo",
-        "prioridad": "baja"
-    }
-    ];
 
 
-function insertarFila() {
-    //Recorre los objetos 
-    for (let index = 0; index < elementos.length; index++) {
-        //Seleccionamos el tbdoy que es donde vamos a insertar las filas
-        let tbody = document.querySelector("#nuestrasFilas");
-        const element = elementos[index];
+async function insertarFila() {
 
-        //creamos tr y lo metemos dentro de la tabla
-        const cuerpoTr = document.createElement("tr");
+    fetch('./ws/getElement.php', {
+        method: 'GET',
+    })
+    .then(response => response.json())
+    .then(data => {
 
-        ////////////////////////////////////////////////////////////
-        // A cada elementos del tr le damos la clase a, para posteriormente trabajar con ell
+         //Recorre los objetos 
+        for (let index = 0; index < data.data.length; index++) {
+            //Seleccionamos el tbdoy que es donde vamos a insertar las filas
+            let tbody = document.querySelector("#nuestrasFilas");
+            
 
-        cuerpoTr.setAttribute("class", "a");
-        cuerpoTr.setAttribute("id", "fila" + index);
-        //cuerpoTr.setAttribute("onclick", "generarForm(this);");
-        //
-        tbody.appendChild(cuerpoTr);
+            //creamos tr y lo metemos dentro de la tabla
+            const cuerpoTr = document.createElement("tr");
 
-        //X
-        const x = document.createElement("td");
-        const button = document.createElement("button");
-        const botonG = document.createElement("button");
+            ////////////////////////////////////////////////////////////
 
-        cuerpoTr.appendChild(x);
-        x.appendChild(button);
-        x.appendChild(botonG);
+            cuerpoTr.setAttribute("class", "a");
+            cuerpoTr.setAttribute("id","fila"+index);
+    
+            tbody.appendChild(cuerpoTr);
 
-        button.textContent = "X";
-        botonG.textContent = "edit";
-        /* button.setAttribute("id", index); */
-        botonG.setAttribute("id", "a" + index);
-        botonG.setAttribute("class", "botonEdit");
+            //X
+            const x = document.createElement("td");
+            const button = document.createElement("button");
+            const botonG = document.createElement("button");
 
-        //BOTON GUARDAR
-        const botonSave = document.createElement('button');
-        cuerpoTr.appendChild(x);
-        x.appendChild(botonSave);
-        botonSave.textContent = "guardar";
-        botonSave.setAttribute("class", "botonSave");
-        botonSave.setAttribute("id", "b" + index);
-        botonSave.style.display = "none";
+            cuerpoTr.appendChild(x);
+            x.appendChild(button);
+            x.appendChild(botonG);
 
-        button.onclick = borrarFila;
-        botonG.onclick = cambiarInput;
+            button.textContent = "X";
+            botonG.textContent = "edit";
+            /* button.setAttribute("id", index); */
+            botonG.setAttribute("id", "a" + index);
+            botonG.setAttribute("class", "botonEdit");
 
-        
-        //creamos td y lo metemos dentro del tr (nombre)
-        const cuerpoTd = document.createElement("td");
-        cuerpoTr.appendChild(cuerpoTd);
-        cuerpoTd.textContent = element.nombre;
-        cuerpoTd.setAttribute("class", "names");
-        //Desc
-        const cuerpoTdDesc = document.createElement("td");
-        cuerpoTr.appendChild(cuerpoTdDesc);
-        cuerpoTdDesc.textContent = element.descripcion;
-        cuerpoTdDesc.setAttribute("class", "descs");
-        //NumSer
-        const cuerpoTdNum = document.createElement("td");
-        cuerpoTr.appendChild(cuerpoTdNum);
-        cuerpoTdNum.textContent = element["numero de serie"];
-        //estado
-        const cuerpoTdEst = document.createElement("td");
-        cuerpoTr.appendChild(cuerpoTdEst);
-        cuerpoTdEst.textContent = element.estado;
-        //prioridad
-        const cuerpoTdPrio = document.createElement("td");
-        cuerpoTr.appendChild(cuerpoTdPrio);
-        cuerpoTdPrio.textContent = element.prioridad;
+            button.setAttribute("onclick", "borrarFila(this)");
 
-        // PARA BORRAR FILAS
-        function borrarFila() {
-            tbody.removeChild(cuerpoTr);
+            //BOTON GUARDAR
+            const botonSave = document.createElement('button');
+            cuerpoTr.appendChild(x);
+            x.appendChild(botonSave);
+            botonSave.textContent = "guardar";
+            botonSave.setAttribute("class", "botonSave");
+            botonSave.setAttribute("id", "b" + index);
+            botonSave.style.display = "none";
+
+            button.onclick = borrarFila;
+            botonG.onclick = cambiarInput;
+
+            
+            //creamos td y lo metemos dentro del tr (nombre)
+            const cuerpoTd = document.createElement("td");
+            cuerpoTr.appendChild(cuerpoTd);
+            cuerpoTd.innerHTML = data.data[index].nombre;
+            cuerpoTd.setAttribute("class", "names");
+            //Desc
+            const cuerpoTdDesc = document.createElement("td");
+            cuerpoTr.appendChild(cuerpoTdDesc);
+            cuerpoTdDesc.textContent = data.data[index].descripcion;
+            cuerpoTdDesc.setAttribute("class", "descs");
+            //NumSer
+            const cuerpoTdNum = document.createElement("td");
+            cuerpoTr.appendChild(cuerpoTdNum);
+            cuerpoTdNum.textContent = data.data[index].nserie;
+            //estado
+            const cuerpoTdEst = document.createElement("td");
+            cuerpoTr.appendChild(cuerpoTdEst);
+            cuerpoTdEst.textContent = data.data[index].estado;
+            //prioridad
+            const cuerpoTdPrio = document.createElement("td");
+            cuerpoTr.appendChild(cuerpoTdPrio);
+            cuerpoTdPrio.textContent = data.data[index].prioridad;
+            
         }
-    }
+    })
 }
 
-// ARREGLAR QUE ME VUELVA A FILTRAR
-// AÑADIR LOS CAMBIOS EN EL ARRAY PARA QUE ME BUSQUEN
+//////////////////////////////////////////////////////////////////////////////////
 
-document.getElementById("buscador").addEventListener("keyup", filtrarResult);
 
-function filtrarResult() {
+
+
+async function borrarFila() {
+    let fila = this.parentNode.parentNode;
+
+    fetch('./ws/deleteElement.php', {
+        method: 'GET',
+    })
+    .then(response => response.json())
+    .then(data => {
+        fila.remove();
+
+
+
+
+
+
+
+
+        console.log(data);
+    })
+
+    
+
+
+}
+
+
+function insertData(){
+    
+}
+
+//////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+//document.getElementById("buscador").addEventListener("keyup", filtrar);
+/* function filtrarResult() {
     //selecciono la clase a (los tr), que es donde va a buscar todos los datos que le vamos pansando
     const claseA = document.querySelectorAll(".a");
 
@@ -139,8 +155,7 @@ function filtrarResult() {
             }
         })
     })
-}
-
+} */
 
  function cambiarInput() {
     //selecciono el id
@@ -178,3 +193,6 @@ function filtrarResult() {
         botonEdit.onclick = cambiarInput;
     })
 }
+
+
+

@@ -70,12 +70,12 @@ function comprobarSiExiste($pdo, $consultaAEjecutar, $id){
 } 
 
 function modificarDatos($pdo, $consultaUpdate, $name, $description, $serialNumber, $condition, $priority, $id){
-    $consultaUpdate = ("UPDATE elementos SET 
+    $consultaUpdate = "UPDATE elementos SET 
                             nombre = :nombre, 
                             descripcion = :desc, 
                             nserie = :numSer,
                             estado = :estado, 
-                            prioridad = :igual where id = :id");
+                            prioridad = :igual where id = :id";
     $consultaAEjecutar = $pdo->prepare($consultaUpdate);
 
     $elemento = comprobarSiExiste($pdo, $consultaAEjecutar, $id, $name, $description, $serialNumber, $condition, $priority);

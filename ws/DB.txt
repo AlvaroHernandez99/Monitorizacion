@@ -19,5 +19,47 @@
         "numero de serie": "",
         "estado": "no seleccionado",
         "prioridad": null
+    },
+    {
+        "nombre": "asasasasas",
+        "descripcion": "asdasdasd",
+        "numero de serie": "324234",
+        "estado": "activo",
+        "prioridad": "alta"
+    },
+    {
+        "nombre": "asdasd",
+        "descripcion": "asdasd",
+        "numero de serie": "3245324",
+        "estado": "inactivo",
+        "prioridad": "media"
+    },
+    {
+        "nombre": "asdasd",
+        "descripcion": "asdasd",
+        "numero de serie": "3245324",
+        "estado": "inactivo",
+        "prioridad": "media"
+    },
+    {
+        "nombre": "asdasd",
+        "descripcion": "sad",
+        "numero de serie": "3245324",
+        "estado": "inactivo",
+        "prioridad": "media"
+    },
+    {
+        "nombre": "asdasd",
+        "descripcion": "sad",
+        "numero de serie": "3245324",
+        "estado": "inactivo",
+        "prioridad": "media"
+    },
+    {
+        "nombre": "asdasd",
+        "descripcion": "asdasd",
+        "numero de serie": "3245324",
+        "estado": "inactivo",
+        "prioridad": "media"
     }
 ]

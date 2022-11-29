@@ -11,6 +11,7 @@ function cargarNav() {
 
         const miUrl = '/segundo/DWES/primera/';
 
+        //rata + nombre de archivo
         if(miUrl+'index.html' == window.location.pathname){
             /* SELECCION Y CAMBIO DE COLOR A  PELO */
             const index = document.querySelector("#index");
