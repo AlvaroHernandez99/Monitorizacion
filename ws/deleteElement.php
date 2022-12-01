@@ -3,11 +3,14 @@ include_once "BaseDatos.php";
 include_once "Conexion.php";
 include_once "Respuesta.php";
 
+/* $datos = file_get_contents('php://input');
+var_dump($datos);  
+ */
 $conect = Conexion::conectar();
 
 try{
     if($conect === null){
-        echo Respuesta::mensaje(False, "No se ha conseguido establecer conexión con la db", null);
+        echo Respuesta::mensaje(false, "No se ha conseguido establecer conexión con la db", null);
         die;
     }else{
         $miPdo = $conect->getPdo(); 

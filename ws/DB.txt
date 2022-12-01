@@ -61,5 +61,481 @@
         "numero de serie": "3245324",
         "estado": "inactivo",
         "prioridad": "media"
+    },
+    {
+        "nombre": "sdfsdfs",
+        "descripcion": "sdfsdfsdf",
+        "numero de serie": "53453",
+        "estado": "activo",
+        "prioridad": "media"
+    },
+    {
+        "nombre": "sdfsdfs",
+        "descripcion": "sdfsdfsdf",
+        "numero de serie": "53453",
+        "estado": "activo",
+        "prioridad": "media"
+    },
+    {
+        "nombre": "sdfsdfs",
+        "descripcion": "sdfsdfsdf",
+        "numero de serie": "53453",
+        "estado": "activo",
+        "prioridad": "media"
+    },
+    {
+        "nombre": "asdsa",
+        "descripcion": "asdasd",
+        "numero de serie": "23",
+        "estado": "activo",
+        "prioridad": "media"
+    },
+    {
+        "nombre": "asda",
+        "descripcion": "asdasd",
+        "numero de serie": "34534",
+        "estado": "activo",
+        "prioridad": "media"
+    },
+    {
+        "nombre": "awsdsd",
+        "descripcion": "asdsad",
+        "numero de serie": "444",
+        "estado": "activo",
+        "prioridad": "media"
+    },
+    {
+        "nombre": "3243",
+        "descripcion": "3443",
+        "numero de serie": "34",
+        "estado": "activo",
+        "prioridad": "media"
+    },
+    {
+        "nombre": "2342",
+        "descripcion": "23432",
+        "numero de serie": "234",
+        "estado": "inactivo",
+        "prioridad": "media"
+    },
+    {
+        "nombre": "mamamasmdmam",
+        "descripcion": "ASDASD",
+        "numero de serie": "",
+        "estado": "activo",
+        "prioridad": "media"
+    },
+    {
+        "nombre": "Motor v3",
+        "descripcion": "no va",
+        "numero de serie": "23423",
+        "estado": "inactivo",
+        "prioridad": "alta"
+    },
+    {
+        "nombre": "asdasd",
+        "descripcion": "asdasd",
+        "numero de serie": "3245324",
+        "estado": "inactivo",
+        "prioridad": "media"
+    },
+    {
+        "nombre": "sio",
+        "descripcion": "321",
+        "numero de serie": "",
+        "estado": "no seleccionado",
+        "prioridad": null
+    },
+    {
+        "nombre": "123123",
+        "descripcion": "1234123",
+        "numero de serie": "1233",
+        "estado": "activo",
+        "prioridad": "media"
+    },
+    {
+        "nombre": "asdas",
+        "descripcion": "dasdasd",
+        "numero de serie": "",
+        "estado": "no seleccionado",
+        "prioridad": null
+    },
+    {
+        "nombre": "sdfsdfsdf",
+        "descripcion": "",
+        "numero de serie": "",
+        "estado": "no seleccionado",
+        "prioridad": null
+    },
+    {
+        "nombre": "sdfsdfsdf",
+        "descripcion": "",
+        "numero de serie": "",
+        "estado": "no seleccionado",
+        "prioridad": null
+    },
+    {
+        "nombre": "",
+        "descripcion": "dsfsdf",
+        "numero de serie": "",
+        "estado": "no seleccionado",
+        "prioridad": null
+    },
+    {
+        "nombre": "",
+        "descripcion": "dsfsdf",
+        "numero de serie": "",
+        "estado": "no seleccionado",
+        "prioridad": null
+    },
+    {
+        "nombre": "asdasd",
+        "descripcion": "",
+        "numero de serie": "",
+        "estado": "no seleccionado",
+        "prioridad": null
+    },
+    {
+        "nombre": "asdasd",
+        "descripcion": "",
+        "numero de serie": "",
+        "estado": "no seleccionado",
+        "prioridad": null
+    },
+    {
+        "nombre": "asdasd",
+        "descripcion": "",
+        "numero de serie": "",
+        "estado": "no seleccionado",
+        "prioridad": null
+    },
+    {
+        "nombre": "alvaro",
+        "descripcion": "asda",
+        "numero de serie": "",
+        "estado": "no seleccionado",
+        "prioridad": null
+    },
+    {
+        "nombre": "alvaro",
+        "descripcion": "asda",
+        "numero de serie": "",
+        "estado": "no seleccionado",
+        "prioridad": null
+    },
+    {
+        "nombre": "alvaro",
+        "descripcion": "asda",
+        "numero de serie": "",
+        "estado": "no seleccionado",
+        "prioridad": null
+    },
+    {
+        "nombre": "alvaro",
+        "descripcion": "asda",
+        "numero de serie": "",
+        "estado": "no seleccionado",
+        "prioridad": null
+    },
+    {
+        "nombre": "sdfdsfs",
+        "descripcion": "",
+        "numero de serie": "",
+        "estado": "no seleccionado",
+        "prioridad": null
+    },
+    {
+        "nombre": "sdfdsfs",
+        "descripcion": "",
+        "numero de serie": "",
+        "estado": "no seleccionado",
+        "prioridad": null
+    },
+    {
+        "nombre": "sdfdsfs",
+        "descripcion": "",
+        "numero de serie": "",
+        "estado": "no seleccionado",
+        "prioridad": null
+    },
+    {
+        "nombre": "sdfdsfs",
+        "descripcion": "",
+        "numero de serie": "",
+        "estado": "no seleccionado",
+        "prioridad": null
+    },
+    {
+        "nombre": "sdfdsfs",
+        "descripcion": "",
+        "numero de serie": "",
+        "estado": "no seleccionado",
+        "prioridad": null
+    },
+    {
+        "nombre": "asdasd",
+        "descripcion": "",
+        "numero de serie": "",
+        "estado": "no seleccionado",
+        "prioridad": null
+    },
+    {
+        "nombre": "asdasd",
+        "descripcion": "",
+        "numero de serie": "",
+        "estado": "no seleccionado",
+        "prioridad": null
+    },
+    {
+        "nombre": "asdasd",
+        "descripcion": "",
+        "numero de serie": "",
+        "estado": "no seleccionado",
+        "prioridad": null
+    },
+    {
+        "nombre": "234234",
+        "descripcion": "",
+        "numero de serie": "",
+        "estado": "no seleccionado",
+        "prioridad": null
+    },
+    {
+        "nombre": "asdasdas",
+        "descripcion": "asdasd",
+        "numero de serie": "",
+        "estado": "no seleccionado",
+        "prioridad": "alta"
+    },
+    {
+        "nombre": "asdasdas",
+        "descripcion": "asdasd",
+        "numero de serie": "",
+        "estado": "no seleccionado",
+        "prioridad": "alta"
+    },
+    {
+        "nombre": "asdasdas",
+        "descripcion": "asdasd",
+        "numero de serie": "",
+        "estado": "no seleccionado",
+        "prioridad": "alta"
+    },
+    {
+        "nombre": "",
+        "descripcion": "",
+        "numero de serie": "",
+        "estado": "no seleccionado",
+        "prioridad": null
+    },
+    {
+        "nombre": "",
+        "descripcion": "",
+        "numero de serie": "",
+        "estado": "no seleccionado",
+        "prioridad": null
+    },
+    {
+        "nombre": "asasdasdas",
+        "descripcion": "asdsad",
+        "numero de serie": "",
+        "estado": "activo",
+        "prioridad": "media"
+    },
+    {
+        "nombre": "asasdasdas",
+        "descripcion": "asdsad",
+        "numero de serie": "",
+        "estado": "activo",
+        "prioridad": "media"
+    },
+    {
+        "nombre": "asasdasdas",
+        "descripcion": "asdsad",
+        "numero de serie": "",
+        "estado": "activo",
+        "prioridad": "media"
+    },
+    {
+        "nombre": "asasdasdas",
+        "descripcion": "asdsad",
+        "numero de serie": "",
+        "estado": "activo",
+        "prioridad": "media"
+    },
+    {
+        "nombre": "asdad",
+        "descripcion": "asda",
+        "numero de serie": "",
+        "estado": "no seleccionado",
+        "prioridad": null
+    },
+    {
+        "nombre": "asdad",
+        "descripcion": "asda",
+        "numero de serie": "",
+        "estado": "no seleccionado",
+        "prioridad": null
+    },
+    {
+        "nombre": "asdad",
+        "descripcion": "asda",
+        "numero de serie": "",
+        "estado": "no seleccionado",
+        "prioridad": null
+    },
+    {
+        "nombre": "asdad",
+        "descripcion": "asda",
+        "numero de serie": "",
+        "estado": "no seleccionado",
+        "prioridad": null
+    },
+    {
+        "nombre": "asdad",
+        "descripcion": "asda",
+        "numero de serie": "",
+        "estado": "no seleccionado",
+        "prioridad": null
+    },
+    {
+        "nombre": "asdasdsadasdasdsad",
+        "descripcion": "asda",
+        "numero de serie": "",
+        "estado": "no seleccionado",
+        "prioridad": null
+    },
+    {
+        "nombre": "asdasdsadasdasdsad",
+        "descripcion": "asda",
+        "numero de serie": "",
+        "estado": "no seleccionado",
+        "prioridad": null
+    },
+    {
+        "nombre": "asdasdsadasdasdsad",
+        "descripcion": "asda",
+        "numero de serie": "",
+        "estado": "no seleccionado",
+        "prioridad": null
+    },
+    {
+        "nombre": "sacacac",
+        "descripcion": "asc",
+        "numero de serie": "",
+        "estado": "activo",
+        "prioridad": "media"
+    },
+    {
+        "nombre": "sacacac",
+        "descripcion": "asc",
+        "numero de serie": "",
+        "estado": "activo",
+        "prioridad": "media"
+    },
+    {
+        "nombre": "sacacac",
+        "descripcion": "asc",
+        "numero de serie": "",
+        "estado": "activo",
+        "prioridad": "media"
+    },
+    {
+        "nombre": "sacacac",
+        "descripcion": "asc",
+        "numero de serie": "",
+        "estado": "activo",
+        "prioridad": "media"
+    },
+    {
+        "nombre": "sacacac",
+        "descripcion": "asc",
+        "numero de serie": "",
+        "estado": "activo",
+        "prioridad": "media"
+    },
+    {
+        "nombre": "sacacacasc",
+        "descripcion": "asc",
+        "numero de serie": "",
+        "estado": "activo",
+        "prioridad": "baja"
+    },
+    {
+        "nombre": "sacacacasc",
+        "descripcion": "asc",
+        "numero de serie": "",
+        "estado": "activo",
+        "prioridad": "baja"
+    },
+    {
+        "nombre": "sacacacasc",
+        "descripcion": "asc",
+        "numero de serie": "",
+        "estado": "activo",
+        "prioridad": "baja"
+    },
+    {
+        "nombre": "",
+        "descripcion": "34345435",
+        "numero de serie": "",
+        "estado": "no seleccionado",
+        "prioridad": null
+    },
+    {
+        "nombre": "",
+        "descripcion": "34345435",
+        "numero de serie": "",
+        "estado": "no seleccionado",
+        "prioridad": null
+    },
+    {
+        "nombre": "",
+        "descripcion": "34345435",
+        "numero de serie": "",
+        "estado": "no seleccionado",
+        "prioridad": null
+    },
+    {
+        "nombre": "",
+        "descripcion": "fdgfdgfdg",
+        "numero de serie": "",
+        "estado": "no seleccionado",
+        "prioridad": null
+    },
+    {
+        "nombre": "",
+        "descripcion": "fdgfdgfdg",
+        "numero de serie": "",
+        "estado": "no seleccionado",
+        "prioridad": null
+    },
+    {
+        "nombre": "",
+        "descripcion": "fdgfdgfdg",
+        "numero de serie": "",
+        "estado": "no seleccionado",
+        "prioridad": null
+    },
+    {
+        "nombre": "",
+        "descripcion": "fdgfdgfdgdfgfdgdfgdfg",
+        "numero de serie": "",
+        "estado": "no seleccionado",
+        "prioridad": null
+    },
+    {
+        "nombre": "",
+        "descripcion": "fdgfdgfdgdfgfdgdfgdfg",
+        "numero de serie": "",
+        "estado": "no seleccionado",
+        "prioridad": null
+    },
+    {
+        "nombre": "",
+        "descripcion": "fdgfdgfdgdfgfdgdfgdfg",
+        "numero de serie": "",
+        "estado": "no seleccionado",
+        "prioridad": null
     }
 ]

@@ -9,7 +9,7 @@ $conect = Conexion::conectar();
 
 try{
     if($conect === null){
-        echo Respuesta::mensaje(False, "No se ha conseguido establecer conexión con la db", null);
+        echo Respuesta::mensaje(false, "No se ha conseguido establecer conexión con la db", null);
         die;
     }else{
         $miPdo = $conect->getPdo(); 
@@ -38,7 +38,7 @@ switch ($priority) {
 $consultaInsertar = ("INSERT INTO elementos (nombre, descripcion, nserie, estado, prioridad) VALUES
                     (:nombre, :desc, :numSer, :estado, :igual)");
 $comprobacionExistencia = insertarElemento($miPdo, $consultaInsertar, $name, $description, $serialNumber, $condition, $priority);
-echo Respuesta::mensaje(True, "Nuevo elemento creado en la bd", $comprobacionExistencia);
+echo Respuesta::mensaje(true, "Nuevo elemento creado en la bd", $comprobacionExistencia);
 
 function insertarElemento($pdo, $consultaInsertar, $name, $description, $serialNumber, $condition, $priority){
     try{

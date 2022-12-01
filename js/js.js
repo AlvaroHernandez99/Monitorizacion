@@ -23,10 +23,14 @@ async function insertarFila() {
             ////////////////////////////////////////////////////////////
 
             cuerpoTr.setAttribute("class", "a");
+            // -----------------------------------------------------------
             cuerpoTr.setAttribute("id","fila"+index);
-    
-            tbody.appendChild(cuerpoTr);
+            //cuerpoTr.setAttribute("id", data.data[index].id);
 
+    
+            tbody.appendChild(cuerpoTr); 
+            
+            
             //X
             const x = document.createElement("td");
             const button = document.createElement("button");
@@ -36,13 +40,19 @@ async function insertarFila() {
             x.appendChild(button);
             x.appendChild(botonG);
 
+
             button.textContent = "X";
             botonG.textContent = "edit";
             /* button.setAttribute("id", index); */
             botonG.setAttribute("id", "a" + index);
             botonG.setAttribute("class", "botonEdit");
 
+
             button.setAttribute("onclick", "borrarFila(this)");
+            // -----------------------------------------------------------
+            button.setAttribute("id", data.data[index].id);
+            button.setAttribute("class", "buttonId");
+            //console.log(button.id);
 
             //BOTON GUARDAR
             const botonSave = document.createElement('button');
@@ -53,7 +63,8 @@ async function insertarFila() {
             botonSave.setAttribute("id", "b" + index);
             botonSave.style.display = "none";
 
-            button.onclick = borrarFila;
+
+            button.onclick = borrarFila; 
             botonG.onclick = cambiarInput;
 
             
@@ -84,47 +95,68 @@ async function insertarFila() {
     })
 }
 
-//////////////////////////////////////////////////////////////////////////////////
 
-
-
-
-async function borrarFila() {
+async function borrarFila(id) {
     let fila = this.parentNode.parentNode;
+    const butons = document.querySelectorAll(".buttonId");
+    
+    [].forEach.call(butons, function(buttonId) {
+        //console.log(buttonId.id);
+        return id = buttonId.id;
+    });
+    fetch(`./ws/deleteElement.php?id=${id}`, {
+        method: 'DELETE',
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log(data);
+        fila.remove(); 
+    })
+}
 
-    fetch('./ws/deleteElement.php', {
+
+//LISTA DE ID
+async function traeDatos(){
+    fetch('./ws/getElement.php', {
         method: 'GET',
     })
     .then(response => response.json())
     .then(data => {
-        fila.remove();
-
-
-
-
-
-
-
-
-        console.log(data);
+        for (let i = 0; i < data.data.length; i++) {
+            console.log(data.data[i].id);
+        } 
     })
-
-    
-
-
 }
 
 
-function insertData(){
+
+/* async function modify(id){
+    const butons = document.querySelectorAll(".saveClass");
+    [].forEach.call(butons, function(buttonId) {
+        //console.log(buttonId.id);
+        return id = buttonId.id;
+    });
+
+    fetch(`./ws/modifyElements.php?id=${id}`, {
+        method: 'GET',
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log(data);
+    })
     
+} */
+
+
+
+async function createElementDos(){
+    fetch("./ws/createElementDos.php/", {
+        method: 'POST',
+        body: new FormData(formularioGrid)
+    })   
 }
 
 //////////////////////////////////////////////////////////////////////////////////
-
-
-
-
-
 
 //document.getElementById("buscador").addEventListener("keyup", filtrar);
 /* function filtrarResult() {
@@ -168,7 +200,7 @@ function insertData(){
         let datos = fila.cells[i].innerHTML;
         let input = document.createElement('input');
         if (i === 0) {
-            fila.cells[i].innerHTML = "<button id='botonSave'>save</button>";
+            fila.cells[i].innerHTML = "<button onclick='modify(this)' class='saveClass' id='botonSave'>save</button>";
         } else {
             fila.cells[i].appendChild(input);
             input.id = i;
