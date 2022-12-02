@@ -23,7 +23,6 @@ async function insertarFila() {
             ////////////////////////////////////////////////////////////
 
             cuerpoTr.setAttribute("class", "a");
-            // -----------------------------------------------------------------------------------------------------------------
             cuerpoTr.setAttribute("id", data.data[index].id);
             //cuerpoTr.setAttribute("id", data.data[index].id);
 
@@ -44,6 +43,7 @@ async function insertarFila() {
             button.textContent = "X";
             botonG.textContent = "edit";
             /* button.setAttribute("id", index); */
+            // -----------------------------------------------------------------------------------------------------------------
             botonG.setAttribute("id", "a" + index);
             botonG.setAttribute("class", "botonEdit");
 
@@ -58,10 +58,10 @@ async function insertarFila() {
             const botonSave = document.createElement('button');
             cuerpoTr.appendChild(x);
             x.appendChild(botonSave);
-            botonSave.textContent = "guardar";
-            botonSave.setAttribute("class", "botonSave");
-            botonSave.setAttribute("id", "b" + index);
-            botonSave.style.display = "none";
+            /* botonSave.textContent = "guardar";
+            botonSave.setAttribute("class", "botonSave");*/
+            botonSave.setAttribute("id", data.data[index].id);
+            botonSave.style.display = "none"; 
 
             //    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             button.onclick = borrarFila; 
@@ -95,23 +95,12 @@ async function insertarFila() {
     })
 }
 
-//////////////////////////////////////////////////////////////////////////////////
 
-async function borrarFila(id) {
-    
-
-    //pasarle id del boton
-    /* const butons = document.querySelectorAll(".buttonId");
-    //ASi solo le pasa el último id, que es donde queda el foreach
-    [].forEach.call(butons, function(bId) {
-        console.log(bId.id);
-        return id = bId.id;
-    });  */
-    
+async function borrarFila(id) { 
     //seleccionar fila
     let fila = this.parentNode.parentNode;
     id = fila.id;
-    //console.log(fila.id);
+    console.log(fila);
 
     fetch(`./ws/deleteElement.php?id=${id}`, {
         method: 'DELETE',
@@ -122,7 +111,6 @@ async function borrarFila(id) {
         fila.remove(); 
     })
 }
-
 
 //LISTA DE ID
 async function traeDatos(){
@@ -138,32 +126,12 @@ async function traeDatos(){
 }
 
 
-
-/* ?id=${id} */
-/* async function modify(){
-    fetch(`./ws/modifyElements.php`, {
-        method: 'POST',
-    })
-    .then(response => response.json())
-    .then(response => {
-        console.log(response);
-        //insertarFila();
-    })
-} */
-
-
-
 async function createElementDos(){
     fetch("./ws/createElementDos.php/", {
         method: 'POST',
         body: new FormData(formularioGrid)
     })   
 }
-
-//////////////////////////////////////////////////////////////////////////////////
-
-
-
 
 
 
@@ -201,7 +169,6 @@ async function createElementDos(){
  function cambiarInput() {
     //selecciono el id
     let fila = this.parentNode.parentNode;
-    
     //recorrer filas, i = 1 para que me ignore el boton
     for (let i = 0; i < fila.cells.length; i++) {
         //console.log(celda.innerHTML);
@@ -209,28 +176,57 @@ async function createElementDos(){
         let datos = fila.cells[i].innerHTML;
         let input = document.createElement('input');
         if (i === 0) {
-            fila.cells[i].innerHTML = "<button id='botonSave'>save</button>";
+            fila.cells[i].innerHTML = "<button id='botonSave'>save</button>"; 
         } else {
             fila.cells[i].appendChild(input);
             input.id = i;
         }
         input.value = datos;
-    }
+     }
     
     let botonSave = document.querySelector("#botonSave");
     botonSave.addEventListener("click", () => {
         for (let i = 0; i < fila.cells.length; i++) {
             if (i === 0) {
-                fila.cells[i].innerHTML = "<button  id='botonX'>X</button><button id='botonEdit'>edit</button>";
+                fila.cells[i].innerHTML = "<button id='botonX'>X</button><button id='botonEdit'>edit</button>";
             } else {
                 let input = document.getElementById(i);
                 fila.cells[i].innerHTML = input.value;
-            }
+            } 
         }
 
-        let id = fila.id;
-        //console.log(id);
+//////////////////////////////////////////////////////////////////////////////////
+    // falta pasarle los datos de los inputs, () form. ya que los id me lo coge bien
+    // kreo q hay k meterlo en un for para que recorra todos los valores
 
+
+    let id = fila.id;
+    console.log(fila.id); 
+    fetch(`./ws/modifyElements.php?id=${id}`, {
+        method: 'GET',
+    })
+    .then(response => response.json())
+    .then(data => {
+        
+        /* names.value = data.nombre;
+        desc.value = data.desc;
+        numSer.value = data.numSer;
+        estado.value = data.estado;
+        igual.value = data.igual; */ 
+
+
+        console.log(data);
+    })
+
+
+
+
+
+
+        
+        
+//////////////////////////////////////////////////////////////////////////////////
+        
         const botonX = document.getElementById('botonX');
         const botonEdit = document.getElementById('botonEdit');
 
@@ -245,11 +241,8 @@ async function createElementDos(){
                 console.log(data);
                 fila.remove(); 
             })
-            
-            
         };
         botonEdit.onclick = cambiarInput;
-
     })
 }
 

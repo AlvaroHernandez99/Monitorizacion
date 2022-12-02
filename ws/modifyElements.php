@@ -49,7 +49,7 @@ if(!empty($_GET['id'])){
         $comprobarUpdate = modificarDatos($miPdo, $consultaUpdate, $name, $description, $serialNumber, $condition, $priority, $id);
         $consultarExistencia = "SELECT * FROM elementos WHERE id = ?";
         $comprobacionExistencia = comprobarSiExiste($miPdo, $consultarExistencia, $id);
-        echo Respuesta::mensaje(True, "Usuario encontrado y datos actualizados", $comprobacionExistencia);
+        echo Respuesta::mensaje(True, "Usuario $id encontrado y datos actualizados", $comprobacionExistencia);
     }else{
         echo Respuesta::mensaje(False, "El id ". $id ." no existe en la base de datos", null);
     }
