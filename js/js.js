@@ -2,7 +2,6 @@ window.onload = () => {
     insertarFila();
 }
 
-
 async function insertarFila() {
 
     fetch('./ws/getElement.php', {
@@ -11,25 +10,20 @@ async function insertarFila() {
     .then(response => response.json())
     .then(data => {
 
-         //Recorre los objetos 
+        //Recorre los objetos 
         for (let index = 0; index < data.data.length; index++) {
             //Seleccionamos el tbdoy que es donde vamos a insertar las filas
             let tbody = document.querySelector("#nuestrasFilas");
-            
 
             //creamos tr y lo metemos dentro de la tabla
             const cuerpoTr = document.createElement("tr");
-
-            ////////////////////////////////////////////////////////////
 
             cuerpoTr.setAttribute("class", "a");
             cuerpoTr.setAttribute("id", data.data[index].id);
             //cuerpoTr.setAttribute("id", data.data[index].id);
 
-    
-            tbody.appendChild(cuerpoTr); 
-            
-            
+            tbody.appendChild(cuerpoTr);
+
             //X
             const x = document.createElement("td");
             const button = document.createElement("button");
@@ -43,13 +37,11 @@ async function insertarFila() {
             button.textContent = "X";
             botonG.textContent = "edit";
             /* button.setAttribute("id", index); */
-            // -----------------------------------------------------------------------------------------------------------------
             botonG.setAttribute("id", "a" + index);
             botonG.setAttribute("class", "botonEdit");
 
 
             button.setAttribute("onclick", "borrarFila(this)");
-            // -----------------------------------------------------------
             button.setAttribute("id", data.data[index].id);
             button.setAttribute("class", "buttonId");
             //console.log(button.id);
@@ -61,80 +53,285 @@ async function insertarFila() {
             /* botonSave.textContent = "guardar";
             botonSave.setAttribute("class", "botonSave");*/
             botonSave.setAttribute("id", data.data[index].id);
-            botonSave.style.display = "none"; 
+            botonSave.style.display = "none";
 
-            //    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-            button.onclick = borrarFila; 
+            button.onclick = borrarFila;
             botonG.onclick = cambiarInput;
 
-            
             //creamos td y lo metemos dentro del tr (nombre)
             const cuerpoTd = document.createElement("td");
             cuerpoTr.appendChild(cuerpoTd);
             cuerpoTd.innerHTML = data.data[index].nombre;
             cuerpoTd.setAttribute("class", "names");
+            cuerpoTd.setAttribute("id", "nombre");
             //Desc
             const cuerpoTdDesc = document.createElement("td");
             cuerpoTr.appendChild(cuerpoTdDesc);
             cuerpoTdDesc.textContent = data.data[index].descripcion;
             cuerpoTdDesc.setAttribute("class", "descs");
+            cuerpoTd.setAttribute("id", "desc");
+
             //NumSer
             const cuerpoTdNum = document.createElement("td");
             cuerpoTr.appendChild(cuerpoTdNum);
             cuerpoTdNum.textContent = data.data[index].nserie;
+            cuerpoTd.setAttribute("id", "numSer");
+
             //estado
             const cuerpoTdEst = document.createElement("td");
             cuerpoTr.appendChild(cuerpoTdEst);
             cuerpoTdEst.textContent = data.data[index].estado;
+            cuerpoTd.setAttribute("id", "estado");
+
             //prioridad
             const cuerpoTdPrio = document.createElement("td");
             cuerpoTr.appendChild(cuerpoTdPrio);
             cuerpoTdPrio.textContent = data.data[index].prioridad;
-            
+            cuerpoTd.setAttribute("id", "igual");
         }
     })
 }
 
 
-async function borrarFila(id) { 
+async function borrarFila(id) {
     //seleccionar fila
     let fila = this.parentNode.parentNode;
     id = fila.id;
     console.log(fila);
-
-    fetch(`./ws/deleteElement.php?id=${id}`, {
-        method: 'DELETE',
+    const swalWithBootstrapButtons = Swal.mixin({
+        customClass: {
+            confirmButton: 'btn btn-success',
+            cancelButton: 'btn btn-danger'
+        },
+        buttonsStyling: false
     })
-    .then(response => response.json())
-    .then(data => {
-        console.log(data);
-        fila.remove(); 
-    })
-}
-
-//LISTA DE ID
-async function traeDatos(){
-    fetch('./ws/getElement.php', {
-        method: 'GET',
-    })
-    .then(response => response.json())
-    .then(data => {
-        for (let i = 0; i < data.data.length; i++) {
-            console.log(data.data[i].id);
+    swalWithBootstrapButtons.fire({
+        title: '¿Estas seguro?',
+        text: "¿Quieres borrar el elmento?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Borrar!',
+        cancelButtonText: 'Cancelar!',
+        reverseButtons: true
+    }).then((result) => {
+        if (result.isConfirmed) {
+            swalWithBootstrapButtons.fire(
+                'Borrado!',
+                'El elemento ha sido borrado',
+                'success'
+            )
+            fetch(`./ws/deleteElement.php?id=${id}`, {
+                method: 'DELETE',
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                fila.remove();
+            })
+        }  else if (
+            result.dismiss === Swal.DismissReason.cancel
+        ) {
+            swalWithBootstrapButtons.fire(
+                'Cancelado',
+                ':)',
+                'error'
+            )
         } 
     })
 }
 
 
-async function createElementDos(){
-    fetch("./ws/createElementDos.php/", {
-        method: 'POST',
-        body: new FormData(formularioGrid)
+// ARREGLAR PARA QUE NO SE REFESQUE POR DEFECTO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+async function createElementDos() {
+    const swalWithBootstrapButtons = Swal.mixin({
+        customClass: {
+            confirmButton: 'btn btn-success',
+            cancelButton: 'btn btn-danger'
+        },
+        buttonsStyling: false
+    })
+    swalWithBootstrapButtons.fire({
+        title: '¿Quieres crear un nuevo elemento?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Crear!',
+        cancelButtonText: 'Cancelar!',
+        reverseButtons: true
+    }).then((result) => {
+        if (result.isConfirmed) {
+            swalWithBootstrapButtons.fire(
+                'Creado!',
+                'El elemento ha sido creado correctamente',
+                'success'
+            )
+            fetch("./ws/createElementDos.php/", {
+                method: 'POST',
+                body: new FormData(formularioGrid)
+            }).then(response => response.json()).then(data => {
+                console.log(data);
+                //HACER QUE NO SE REFRESCQUE
+                /* meter alerta */
+
+
+            })
+        }  else if (
+            result.dismiss === Swal.DismissReason.cancel
+        ) {
+            swalWithBootstrapButtons.fire(
+                'Cancelado',
+                ':)',
+                'error'
+            )
+        } 
     })   
 }
 
 
+function cambiarInput() {
+    //selecciono el id
+    let fila = this.parentNode.parentNode;
+    //recorrer filas, i = 1 para que me ignore el boton
+    for (let i = 0; i < fila.cells.length; i++) {
+        //console.log(celda.innerHTML);
+        //pasar de td a input
+        let datos = fila.cells[i].innerHTML;
+        let input = document.createElement('input');
+        if (i === 0) {
+            fila.cells[i].innerHTML = "<button id='botonSave'>save</button>";
+        } else {
+            fila.cells[i].appendChild(input);
+            input.id = i;
+        }
+        input.value = datos;
+    }
 
+    let botonSave = document.querySelector("#botonSave");
+    botonSave.addEventListener("click", () => {
+        for (let i = 0; i < fila.cells.length; i++) {
+            if (i === 0) {
+                fila.cells[i].innerHTML = "<button id='botonX'>X</button><button id='botonEdit'>edit</button>";
+            } else {
+                let input = document.getElementById(i);
+                fila.cells[i].innerHTML = input.value;
+            }
+        }
+
+ /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+                confirmButton: 'btn btn-success',
+                cancelButton: 'btn btn-danger'
+            },
+            buttonsStyling: false
+        })
+        swalWithBootstrapButtons.fire({
+            title: '¿Quieres guardar los datos el elemento?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Guardar datos!',
+            cancelButtonText: 'Cancelar!',
+            reverseButtons: true
+        }).then((result) => {
+            if (result.isConfirmed) {
+                swalWithBootstrapButtons.fire(
+                    'Se ha editado corractamente!',
+                    'Datos actualizados',
+                    'success'
+                )
+                let id = fila.id;
+                fetch(`./ws/modifyElements.php?id=${id}`, {
+                    method: 'POST',
+
+    ///////////////////////////////////////////////////////////////////////////
+    /* ARREGLAR LO QUE PASO... NO ME COGE EL VALOR DE LOS IMPUTS */
+                    body: {
+                        nombre: document.getElementById("1"),
+                        desc: document.getElementById('2'),
+                        numSer: document.getElementById('3'),
+                        estado: document.getElementById('4'),
+                        igual: document.getElementById('5')
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                })
+   ///////////////////////////////////////////////////////////////////////////
+
+            } else if (
+                result.dismiss === Swal.DismissReason.cancel
+            ) {
+                swalWithBootstrapButtons.fire(
+                    'Cancelado',
+                    ':)',
+                    'error'
+                )
+            } 
+        })
+
+
+ //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        const botonX = document.getElementById('botonX');
+        const botonEdit = document.getElementById('botonEdit');
+        
+        botonX.onclick = () => {
+            let id = fila.id;
+            const swalWithBootstrapButtons = Swal.mixin({
+                customClass: {
+                    confirmButton: 'btn btn-success',
+                    cancelButton: 'btn btn-danger'
+                },
+                buttonsStyling: false
+            })
+            swalWithBootstrapButtons.fire({
+                title: '¿Estas seguro?',
+                text: "¿Quieres borrar el elmento?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Borrar!',
+                cancelButtonText: 'Cancelar!',
+                reverseButtons: true
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    swalWithBootstrapButtons.fire(
+                        'Borrado!',
+                        'El elemento ha sido borrado',
+                        'success'
+                    )
+                    fetch(`./ws/deleteElement.php?id=${id}`, {
+                        method: 'DELETE',
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log(data);
+                        fila.remove();
+                        //alertDelete();
+                    })
+                }  else if (
+                    result.dismiss === Swal.DismissReason.cancel
+                ) {
+                    swalWithBootstrapButtons.fire(
+                        'Cancelado',
+                        ':)',
+                        'error'
+                    )
+                } 
+            })
+            
+        };
+        botonEdit.onclick = cambiarInput;
+    })
+}
+
+
+
+
+
+
+
+/* buscador jodido */
 //document.getElementById("buscador").addEventListener("keyup", filtrar);
 /* function filtrarResult() {
     //selecciono la clase a (los tr), que es donde va a buscar todos los datos que le vamos pansando
@@ -166,85 +363,15 @@ async function createElementDos(){
     })
 } */
 
- function cambiarInput() {
-    //selecciono el id
-    let fila = this.parentNode.parentNode;
-    //recorrer filas, i = 1 para que me ignore el boton
-    for (let i = 0; i < fila.cells.length; i++) {
-        //console.log(celda.innerHTML);
-        //pasar de td a input
-        let datos = fila.cells[i].innerHTML;
-        let input = document.createElement('input');
-        if (i === 0) {
-            fila.cells[i].innerHTML = "<button id='botonSave'>save</button>"; 
-        } else {
-            fila.cells[i].appendChild(input);
-            input.id = i;
-        }
-        input.value = datos;
-     }
-    
-    let botonSave = document.querySelector("#botonSave");
-    botonSave.addEventListener("click", () => {
-        for (let i = 0; i < fila.cells.length; i++) {
-            if (i === 0) {
-                fila.cells[i].innerHTML = "<button id='botonX'>X</button><button id='botonEdit'>edit</button>";
-            } else {
-                let input = document.getElementById(i);
-                fila.cells[i].innerHTML = input.value;
-            } 
-        }
-
-//////////////////////////////////////////////////////////////////////////////////
-    // falta pasarle los datos de los inputs, () form. ya que los id me lo coge bien
-    // kreo q hay k meterlo en un for para que recorra todos los valores
-
-
-    let id = fila.id;
-    console.log(fila.id); 
-    fetch(`./ws/modifyElements.php?id=${id}`, {
+//LISTA DE ID
+/* async function traeDatos() {
+    fetch('./ws/getElement.php', {
         method: 'GET',
     })
-    .then(response => response.json())
-    .then(data => {
-        
-        /* names.value = data.nombre;
-        desc.value = data.desc;
-        numSer.value = data.numSer;
-        estado.value = data.estado;
-        igual.value = data.igual; */ 
-
-
-        console.log(data);
-    })
-
-
-
-
-
-
-        
-        
-//////////////////////////////////////////////////////////////////////////////////
-        
-        const botonX = document.getElementById('botonX');
-        const botonEdit = document.getElementById('botonEdit');
-
-        botonX.onclick = () => {
-            /* borrarFila(id);
-            fila.remove(); */
-            fetch(`./ws/deleteElement.php?id=${id}`, {
-                method: 'DELETE',
-            })
-            .then(response => response.json())
-            .then(data => {
-                console.log(data);
-                fila.remove(); 
-            })
-        };
-        botonEdit.onclick = cambiarInput;
-    })
-}
-
-
-
+        .then(response => response.json())
+        .then(data => {
+            for (let i = 0; i < data.data.length; i++) {
+                console.log(data.data[i].id);
+            }
+        })
+} */

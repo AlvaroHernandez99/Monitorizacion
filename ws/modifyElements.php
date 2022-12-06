@@ -3,6 +3,8 @@ include_once "BaseDatos.php";
 include_once "Conexion.php";
 include_once "Respuesta.php";
 
+//$params = json_decode( file_get_contents( 'php://input' ), true ); 
+
 $conect = Conexion::conectar();
 
 try{
