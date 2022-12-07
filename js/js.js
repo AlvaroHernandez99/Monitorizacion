@@ -92,7 +92,6 @@ async function insertarFila() {
     })
 }
 
-
 async function borrarFila(id) {
     //seleccionar fila
     let fila = this.parentNode.parentNode;
@@ -140,7 +139,6 @@ async function borrarFila(id) {
     })
 }
 
-
 // ARREGLAR PARA QUE NO SE REFESQUE POR DEFECTO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 async function createElementDos() {
     const swalWithBootstrapButtons = Swal.mixin({
@@ -169,10 +167,6 @@ async function createElementDos() {
                 body: new FormData(formularioGrid)
             }).then(response => response.json()).then(data => {
                 console.log(data);
-                //HACER QUE NO SE REFRESCQUE
-                /* meter alerta */
-
-
             })
         }  else if (
             result.dismiss === Swal.DismissReason.cancel
@@ -186,11 +180,10 @@ async function createElementDos() {
     })   
 }
 
-
 function cambiarInput() {
     //selecciono el id
     let fila = this.parentNode.parentNode;
-    //recorrer filas, i = 1 para que me ignore el boton
+    //console.log(fila);
     for (let i = 0; i < fila.cells.length; i++) {
         //console.log(celda.innerHTML);
         //pasar de td a input
@@ -215,6 +208,21 @@ function cambiarInput() {
                 fila.cells[i].innerHTML = input.value;
             }
         }
+        /* CAPTURO LOS VALORES DE LOS INPUTS */
+        nombreInp = fila.cells[1].innerHTML;
+        //console.log(nombreInp);
+
+        descInp = fila.cells[2].innerHTML;
+        //console.log(descInp);
+
+        numSerInp = fila.cells[3].innerHTML;
+        //console.log(numSerInp);
+
+        estadoInp = fila.cells[4].innerHTML;
+        //console.log(estadoInp);
+
+        igualInp = fila.cells[5].innerHTML;
+        //console.log(igualInp); 
 
  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -240,23 +248,55 @@ function cambiarInput() {
                     'success'
                 )
                 let id = fila.id;
+    ///////////////////////////////////////////////////////////////////////////
+                
+
+
+// Me falta decirle que el nombre será la tabla de la db... hay que hacer con un for que recorra la db?¿?¿?¿?¿??¿?¿
+                /* let datos = {
+                    nombre: nombreInp,
+                    descripcion: descInp,
+                    nserie: numSerInp,
+                    estado:estadoInp,
+                    prioridad: igualInp
+                }   */
+                /* console.log(nombre);
+                console.log(descripcion);
+                console.log(nserie);
+                console.log(estado);
+                console.log(prioridad); */
+                
+                let formdata = new FormData();
+
+                formdata.append('nombre', nombreInp);
+                formdata.append('desc', descInp);
+                formdata.append('numSer', numSerInp);
+                formdata.append('estado', estadoInp);
+                formdata.append('igual',igualInp);
+                
+                console.log(formdata);
                 fetch(`./ws/modifyElements.php?id=${id}`, {
                     method: 'POST',
 
-    ///////////////////////////////////////////////////////////////////////////
     /* ARREGLAR LO QUE PASO... NO ME COGE EL VALOR DE LOS IMPUTS */
-                    body: {
-                        nombre: document.getElementById("1"),
-                        desc: document.getElementById('2'),
-                        numSer: document.getElementById('3'),
-                        estado: document.getElementById('4'),
-                        igual: document.getElementById('5')
-                    }
+                    //headers: {"Content-type": "application/json; charset=UTF-8"},
+                    body: formdata,
                 })
                 .then(response => response.json())
                 .then(data => {
-                    console.log(data);
+                    /* El valor del imput e lo recoge bien... */
+                    /* Este nombre tiene que ser el de la tabla de la DB */ // ----- ARREGLAR
+                    /* console.log(nombreInp);*/
+                    console.log(data); 
+
+
+
+                    
                 })
+
+
+
+
    ///////////////////////////////////////////////////////////////////////////
 
             } else if (
