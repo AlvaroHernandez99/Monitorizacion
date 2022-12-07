@@ -18,11 +18,23 @@ try{
     return null;
 }
 
-$name = $_POST["nombre"] ?? "Patata";
-$description = $_POST["desc"] ?? "Gaming";
+$name = $_POST["nombre"];
+if (!empty($_POST['nombre'])) $name = $_POST['nombre'];
+else $name = 'No especificado';
+
+$description = $_POST["desc"];
+if (!empty($_POST['desc'])) $description = $_POST['desc'];
+else $description = 'No especificado';
+
 $serialNumber = $_POST["numSer"] ?? "1234";
-$condition =  $_POST["estado"] ?? "Activo";
-$priority =  $_POST["igual"] ?? "Alta";
+if (!empty($_POST['numSer'])) $serialNumber = $_POST['numSer'];
+else $serialNumber = 'No especificado';
+
+$condition =  $_POST["estado"];
+if (!empty($_POST['estado'])) $condition = $_POST['estado'];
+else $condition = 'No seleccionado';
+
+$priority =  $_POST["igual"] ?? "No seleccionado";
 switch ($priority) {
     case "Bajo":
         $priority = "Baja";
@@ -60,7 +72,6 @@ function insertarElemento($pdo, $consultaInsertar, $name, $description, $serialN
         return null; 
     }
 }
-
 ?>
 
 

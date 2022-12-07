@@ -21,7 +21,7 @@
         <div class="allForm">
             <h2 id="textForm">Formulario</h2>
             <div class="formulario">
-                <form id="formularioGrid" method="post">
+                <form id="formularioGrid" method="post" action="index.html">
                     <div class="div1">
                         <p class="label">Nombre del elemento: <input name="nombre" id="nombre" type="text" placeholder="Bujía"></p>
                     </div>
@@ -34,23 +34,23 @@
                     <div class="div4">
                         <label for="prio">Estado: </label>
                         <select name="estado" id="estado"> 
-                            <option value="no seleccionado">---</option>
+                            <option value="No seleccionado">---</option>
                             <option value="activo">Activo</option>
                             <option value="inactivo">Inactivo</option>
                         </select>
                     </div>
                     <div class="div5">
                         <p class="label">Prioridad:
-                            <input class="hola" id="igual" type="radio" name="igual" value="alta">
+                            <input class="hola" id="igual" type="radio" name="igual" value="Alta">
                             <label for="alta">Alta</label>
-                            <input type="radio" id="igual" name="igual" value="media">
+                            <input type="radio" id="igual" name="igual" value="Media">
                             <label for="media">Media</label>
-                            <input type="radio" id="igual" name="igual" value="baja"> 
+                            <input type="radio" id="igual" name="igual" value="Baja"> 
                             <label for="baja">Baja</label>
                         </p>
                     </div>  
                     <div class="div6">
-                        <input class="botones" onclick="createElementDos()" id="submit" value="Enviar">
+                        <input class="botones" onclick="createElementDos()" type="submit" id="submit" value="Enviar">
                         <a href="./index.html"><input class="botones" id="reset" type="button" value="Reset"></a> <!-- De tipo submit para que refresque la página -->
                     </div>
                 </form>

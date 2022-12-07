@@ -97,14 +97,14 @@ async function borrarFila(id) {
     let fila = this.parentNode.parentNode;
     id = fila.id;
     console.log(fila);
-    const swalWithBootstrapButtons = Swal.mixin({
-        customClass: {
+    const alerta = Swal.mixin({
+        /* customClass: {
             confirmButton: 'btn btn-success',
             cancelButton: 'btn btn-danger'
         },
-        buttonsStyling: false
+        buttonsStyling: false */
     })
-    swalWithBootstrapButtons.fire({
+    alerta.fire({
         title: '¿Estas seguro?',
         text: "¿Quieres borrar el elmento?",
         icon: 'warning',
@@ -114,7 +114,7 @@ async function borrarFila(id) {
         reverseButtons: true
     }).then((result) => {
         if (result.isConfirmed) {
-            swalWithBootstrapButtons.fire(
+            alerta.fire(
                 'Borrado!',
                 'El elemento ha sido borrado',
                 'success'
@@ -130,7 +130,7 @@ async function borrarFila(id) {
         }  else if (
             result.dismiss === Swal.DismissReason.cancel
         ) {
-            swalWithBootstrapButtons.fire(
+            alerta.fire(
                 'Cancelado',
                 ':)',
                 'error'
@@ -141,43 +141,54 @@ async function borrarFila(id) {
 
 // ARREGLAR PARA QUE NO SE REFESQUE POR DEFECTO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 async function createElementDos() {
-    const swalWithBootstrapButtons = Swal.mixin({
-        customClass: {
-            confirmButton: 'btn btn-success',
-            cancelButton: 'btn btn-danger'
-        },
-        buttonsStyling: false
-    })
-    swalWithBootstrapButtons.fire({
-        title: '¿Quieres crear un nuevo elemento?',
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonText: 'Crear!',
-        cancelButtonText: 'Cancelar!',
-        reverseButtons: true
-    }).then((result) => {
-        if (result.isConfirmed) {
-            swalWithBootstrapButtons.fire(
-                'Creado!',
-                'El elemento ha sido creado correctamente',
-                'success'
-            )
-            fetch("./ws/createElementDos.php/", {
-                method: 'POST',
-                body: new FormData(formularioGrid)
-            }).then(response => response.json()).then(data => {
-                console.log(data);
-            })
-        }  else if (
-            result.dismiss === Swal.DismissReason.cancel
-        ) {
-            swalWithBootstrapButtons.fire(
-                'Cancelado',
-                ':)',
-                'error'
-            )
-        } 
+    let fom = document.querySelector("#formularioGrid");
+    fom.addEventListener("submit", (form) => {
+        form.preventDefault();
+        const alerta = Swal.mixin({
+            /* customClass: {
+                confirmButton: 'btn btn-success',
+                cancelButton: 'btn btn-danger'
+            }, */
+            /* buttonsStyling: false  */
+        })
+        alerta.fire({
+            title: '¿Quieres crear un nuevo elemento?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Crear!',
+            cancelButtonText: 'Cancelar!',
+            reverseButtons: true 
+        }).then((result) => {
+            if (result.isConfirmed) {
+                alerta.fire(
+                    'Creado!',
+                    'El elemento ha sido creado correctamente',
+                    'success'
+                )
+                fetch("./ws/createElementDos.php/", {
+                    method: 'POST',
+                    body: new FormData(formularioGrid)
+                }).then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                    resetGG();
+                })
+            }else if (
+                result.dismiss === Swal.DismissReason.cancel, 
+                resetGgDos()
+            ) {
+                alerta.fire(
+                    'Cancelado',
+                    ':)',
+                    'error'
+                )
+            } 
+            
+        }) 
+        
+        
     })   
+    
 }
 
 function cambiarInput() {
@@ -185,8 +196,6 @@ function cambiarInput() {
     let fila = this.parentNode.parentNode;
     //console.log(fila);
     for (let i = 0; i < fila.cells.length; i++) {
-        //console.log(celda.innerHTML);
-        //pasar de td a input
         let datos = fila.cells[i].innerHTML;
         let input = document.createElement('input');
         if (i === 0) {
@@ -197,7 +206,6 @@ function cambiarInput() {
         }
         input.value = datos;
     }
-
     let botonSave = document.querySelector("#botonSave");
     botonSave.addEventListener("click", () => {
         for (let i = 0; i < fila.cells.length; i++) {
@@ -210,30 +218,13 @@ function cambiarInput() {
         }
         /* CAPTURO LOS VALORES DE LOS INPUTS */
         nombreInp = fila.cells[1].innerHTML;
-        //console.log(nombreInp);
-
         descInp = fila.cells[2].innerHTML;
-        //console.log(descInp);
-
         numSerInp = fila.cells[3].innerHTML;
-        //console.log(numSerInp);
-
         estadoInp = fila.cells[4].innerHTML;
-        //console.log(estadoInp);
-
         igualInp = fila.cells[5].innerHTML;
-        //console.log(igualInp); 
-
- /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-        const swalWithBootstrapButtons = Swal.mixin({
-            customClass: {
-                confirmButton: 'btn btn-success',
-                cancelButton: 'btn btn-danger'
-            },
-            buttonsStyling: false
+        const alerta = Swal.mixin({
         })
-        swalWithBootstrapButtons.fire({
+        alerta.fire({
             title: '¿Quieres guardar los datos el elemento?',
             icon: 'warning',
             showCancelButton: true,
@@ -242,29 +233,12 @@ function cambiarInput() {
             reverseButtons: true
         }).then((result) => {
             if (result.isConfirmed) {
-                swalWithBootstrapButtons.fire(
+                alerta.fire(
                     'Se ha editado corractamente!',
                     'Datos actualizados',
                     'success'
                 )
                 let id = fila.id;
-    ///////////////////////////////////////////////////////////////////////////
-                
-
-
-// Me falta decirle que el nombre será la tabla de la db... hay que hacer con un for que recorra la db?¿?¿?¿?¿??¿?¿
-                /* let datos = {
-                    nombre: nombreInp,
-                    descripcion: descInp,
-                    nserie: numSerInp,
-                    estado:estadoInp,
-                    prioridad: igualInp
-                }   */
-                /* console.log(nombre);
-                console.log(descripcion);
-                console.log(nserie);
-                console.log(estado);
-                console.log(prioridad); */
                 
                 let formdata = new FormData();
 
@@ -277,32 +251,17 @@ function cambiarInput() {
                 console.log(formdata);
                 fetch(`./ws/modifyElements.php?id=${id}`, {
                     method: 'POST',
-
-    /* ARREGLAR LO QUE PASO... NO ME COGE EL VALOR DE LOS IMPUTS */
-                    //headers: {"Content-type": "application/json; charset=UTF-8"},
                     body: formdata,
                 })
                 .then(response => response.json())
                 .then(data => {
-                    /* El valor del imput e lo recoge bien... */
-                    /* Este nombre tiene que ser el de la tabla de la DB */ // ----- ARREGLAR
-                    /* console.log(nombreInp);*/
-                    console.log(data); 
-
-
-
-                    
+                    console.log(data);
                 })
-
-
-
-
-   ///////////////////////////////////////////////////////////////////////////
-
             } else if (
-                result.dismiss === Swal.DismissReason.cancel
+                result.dismiss === Swal.DismissReason.cancel,
+                resetGgDos()
             ) {
-                swalWithBootstrapButtons.fire(
+                alerta.fire(
                     'Cancelado',
                     ':)',
                     'error'
@@ -318,14 +277,14 @@ function cambiarInput() {
         
         botonX.onclick = () => {
             let id = fila.id;
-            const swalWithBootstrapButtons = Swal.mixin({
-                customClass: {
+            const alerta = Swal.mixin({
+                /* customClass: {
                     confirmButton: 'btn btn-success',
                     cancelButton: 'btn btn-danger'
                 },
-                buttonsStyling: false
+                buttonsStyling: false */
             })
-            swalWithBootstrapButtons.fire({
+            alerta.fire({
                 title: '¿Estas seguro?',
                 text: "¿Quieres borrar el elmento?",
                 icon: 'warning',
@@ -335,7 +294,7 @@ function cambiarInput() {
                 reverseButtons: true
             }).then((result) => {
                 if (result.isConfirmed) {
-                    swalWithBootstrapButtons.fire(
+                    alerta.fire(
                         'Borrado!',
                         'El elemento ha sido borrado',
                         'success'
@@ -347,12 +306,11 @@ function cambiarInput() {
                     .then(data => {
                         console.log(data);
                         fila.remove();
-                        //alertDelete();
                     })
                 }  else if (
                     result.dismiss === Swal.DismissReason.cancel
                 ) {
-                    swalWithBootstrapButtons.fire(
+                    alerta.fire(
                         'Cancelado',
                         ':)',
                         'error'
@@ -366,8 +324,17 @@ function cambiarInput() {
 }
 
 
+function resetGG() {
+    setTimeout(function(){
+        window.location.reload();
+     }, 1500);
+}
 
-
+function resetGgDos() {
+    setTimeout(function(){
+        window.location.reload();
+    });
+}
 
 
 
