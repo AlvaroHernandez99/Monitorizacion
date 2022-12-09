@@ -3,93 +3,90 @@ window.onload = () => {
 }
 
 async function insertarFila() {
-
     fetch('./ws/getElement.php', {
         method: 'GET',
     })
-    .then(response => response.json())
-    .then(data => {
+        .then(response => response.json())
+        .then(data => {
 
-        //Recorre los objetos 
-        for (let index = 0; index < data.data.length; index++) {
-            //Seleccionamos el tbdoy que es donde vamos a insertar las filas
-            let tbody = document.querySelector("#nuestrasFilas");
+            //Recorre los objetos 
+            for (let index = 0; index < data.data.length; index++) {
+                //Seleccionamos el tbdoy que es donde vamos a insertar las filas
+                let tbody = document.querySelector("#nuestrasFilas");
 
-            //creamos tr y lo metemos dentro de la tabla
-            const cuerpoTr = document.createElement("tr");
+                //creamos tr y lo metemos dentro de la tabla
+                const cuerpoTr = document.createElement("tr");
 
-            cuerpoTr.setAttribute("class", "a");
-            cuerpoTr.setAttribute("id", data.data[index].id);
-            //cuerpoTr.setAttribute("id", data.data[index].id);
+                cuerpoTr.setAttribute("class", "a");
+                cuerpoTr.setAttribute("id", data.data[index].id);
+                //cuerpoTr.setAttribute("id", data.data[index].id);
 
-            tbody.appendChild(cuerpoTr);
+                tbody.appendChild(cuerpoTr);
 
-            //X
-            const x = document.createElement("td");
-            const button = document.createElement("button");
-            const botonG = document.createElement("button");
+                //X
+                const x = document.createElement("td");
+                const button = document.createElement("button");
+                const botonG = document.createElement("button");
 
-            cuerpoTr.appendChild(x);
-            x.appendChild(button);
-            x.appendChild(botonG);
+                cuerpoTr.appendChild(x);
+                x.appendChild(button);
+                x.appendChild(botonG);
 
+                button.textContent = "X";
+                botonG.textContent = "edit";
+                /* button.setAttribute("id", index); */
+                botonG.setAttribute("id", "a" + index);
+                botonG.setAttribute("class", "botonEdit");
 
-            button.textContent = "X";
-            botonG.textContent = "edit";
-            /* button.setAttribute("id", index); */
-            botonG.setAttribute("id", "a" + index);
-            botonG.setAttribute("class", "botonEdit");
+                button.setAttribute("onclick", "borrarFila(this)");
+                button.setAttribute("id", data.data[index].id);
+                button.setAttribute("class", "buttonId");
+                //console.log(button.id);
 
+                //BOTON GUARDAR
+                const botonSave = document.createElement('button');
+                cuerpoTr.appendChild(x);
+                x.appendChild(botonSave);
+                /* botonSave.textContent = "guardar";
+                botonSave.setAttribute("class", "botonSave");*/
+                botonSave.setAttribute("id", data.data[index].id);
+                botonSave.style.display = "none";
 
-            button.setAttribute("onclick", "borrarFila(this)");
-            button.setAttribute("id", data.data[index].id);
-            button.setAttribute("class", "buttonId");
-            //console.log(button.id);
+                button.onclick = borrarFila;
+                botonG.onclick = cambiarInput;
 
-            //BOTON GUARDAR
-            const botonSave = document.createElement('button');
-            cuerpoTr.appendChild(x);
-            x.appendChild(botonSave);
-            /* botonSave.textContent = "guardar";
-            botonSave.setAttribute("class", "botonSave");*/
-            botonSave.setAttribute("id", data.data[index].id);
-            botonSave.style.display = "none";
+                //creamos td y lo metemos dentro del tr (nombre)
+                const cuerpoTd = document.createElement("td");
+                cuerpoTr.appendChild(cuerpoTd);
+                cuerpoTd.innerHTML = data.data[index].nombre;
+                cuerpoTd.setAttribute("class", "names");
+                cuerpoTd.setAttribute("id", "nombre");
+                //Desc
+                const cuerpoTdDesc = document.createElement("td");
+                cuerpoTr.appendChild(cuerpoTdDesc);
+                cuerpoTdDesc.textContent = data.data[index].descripcion;
+                cuerpoTdDesc.setAttribute("class", "descs");
+                cuerpoTd.setAttribute("id", "desc");
 
-            button.onclick = borrarFila;
-            botonG.onclick = cambiarInput;
+                //NumSer
+                const cuerpoTdNum = document.createElement("td");
+                cuerpoTr.appendChild(cuerpoTdNum);
+                cuerpoTdNum.textContent = data.data[index].nserie;
+                cuerpoTd.setAttribute("id", "numSer");
 
-            //creamos td y lo metemos dentro del tr (nombre)
-            const cuerpoTd = document.createElement("td");
-            cuerpoTr.appendChild(cuerpoTd);
-            cuerpoTd.innerHTML = data.data[index].nombre;
-            cuerpoTd.setAttribute("class", "names");
-            cuerpoTd.setAttribute("id", "nombre");
-            //Desc
-            const cuerpoTdDesc = document.createElement("td");
-            cuerpoTr.appendChild(cuerpoTdDesc);
-            cuerpoTdDesc.textContent = data.data[index].descripcion;
-            cuerpoTdDesc.setAttribute("class", "descs");
-            cuerpoTd.setAttribute("id", "desc");
+                //estado
+                const cuerpoTdEst = document.createElement("td");
+                cuerpoTr.appendChild(cuerpoTdEst);
+                cuerpoTdEst.textContent = data.data[index].estado;
+                cuerpoTd.setAttribute("id", "estado");
 
-            //NumSer
-            const cuerpoTdNum = document.createElement("td");
-            cuerpoTr.appendChild(cuerpoTdNum);
-            cuerpoTdNum.textContent = data.data[index].nserie;
-            cuerpoTd.setAttribute("id", "numSer");
-
-            //estado
-            const cuerpoTdEst = document.createElement("td");
-            cuerpoTr.appendChild(cuerpoTdEst);
-            cuerpoTdEst.textContent = data.data[index].estado;
-            cuerpoTd.setAttribute("id", "estado");
-
-            //prioridad
-            const cuerpoTdPrio = document.createElement("td");
-            cuerpoTr.appendChild(cuerpoTdPrio);
-            cuerpoTdPrio.textContent = data.data[index].prioridad;
-            cuerpoTd.setAttribute("id", "igual");
-        }
-    })
+                //prioridad
+                const cuerpoTdPrio = document.createElement("td");
+                cuerpoTr.appendChild(cuerpoTdPrio);
+                cuerpoTdPrio.textContent = data.data[index].prioridad;
+                cuerpoTd.setAttribute("id", "igual");
+            }
+        })
 }
 
 async function borrarFila(id) {
@@ -97,17 +94,9 @@ async function borrarFila(id) {
     let fila = this.parentNode.parentNode;
     id = fila.id;
     console.log(fila);
-    const alerta = Swal.mixin({
-        /* customClass: {
-            confirmButton: 'btn btn-success',
-            cancelButton: 'btn btn-danger'
-        },
-        buttonsStyling: false */
-    })
+    const alerta = Swal.mixin()
     alerta.fire({
-        title: '¿Estas seguro?',
-        text: "¿Quieres borrar el elmento?",
-        icon: 'warning',
+        iconHtml: '<img src="./img/seguro.jpg">',
         showCancelButton: true,
         confirmButtonText: 'Borrar!',
         cancelButtonText: 'Cancelar!',
@@ -115,80 +104,61 @@ async function borrarFila(id) {
     }).then((result) => {
         if (result.isConfirmed) {
             alerta.fire(
-                'Borrado!',
-                'El elemento ha sido borrado',
-                'success'
+                '<img src="./img/perfect.jpg">'
             )
             fetch(`./ws/deleteElement.php?id=${id}`, {
                 method: 'DELETE',
             })
-            .then(response => response.json())
-            .then(data => {
-                console.log(data);
-                fila.remove();
-            })
-        }  else if (
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                    fila.remove();
+                })
+        } else if (
             result.dismiss === Swal.DismissReason.cancel
         ) {
             alerta.fire(
-                'Cancelado',
-                ':)',
-                'error'
+                '<img src="./img/gallina.jpg">',
             )
-        } 
+        }
     })
 }
 
-// ARREGLAR PARA QUE NO SE REFESQUE POR DEFECTO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 async function createElementDos() {
     let fom = document.querySelector("#formularioGrid");
     fom.addEventListener("submit", (form) => {
         form.preventDefault();
-        const alerta = Swal.mixin({
-            /* customClass: {
-                confirmButton: 'btn btn-success',
-                cancelButton: 'btn btn-danger'
-            }, */
-            /* buttonsStyling: false  */
-        })
+        //alerta customizada o cuando queremos crear alertas propias
+        const alerta = Swal.mixin()
         alerta.fire({
-            title: '¿Quieres crear un nuevo elemento?',
-            icon: 'warning',
+            iconHtml: '<img src="./img/seguro.jpg">',
             showCancelButton: true,
             confirmButtonText: 'Crear!',
             cancelButtonText: 'Cancelar!',
-            reverseButtons: true 
+            reverseButtons: true
         }).then((result) => {
             if (result.isConfirmed) {
                 alerta.fire(
-                    'Creado!',
-                    'El elemento ha sido creado correctamente',
-                    'success'
+                    '<img src="./img/perfect.jpg">',
                 )
                 fetch("./ws/createElementDos.php/", {
                     method: 'POST',
                     body: new FormData(formularioGrid)
-                }).then(response => response.json())
-                .then(data => {
-                    console.log(data);
-                    resetGG();
                 })
-            }else if (
-                result.dismiss === Swal.DismissReason.cancel, 
-                resetGgDos()
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log(data);
+                        resetGG();
+                    })
+            } else if (
+                result.dismiss === Swal.DismissReason.cancel
             ) {
                 alerta.fire(
-                    'Cancelado',
-                    ':)',
-                    'error'
+                    '<img src="./img/gallina.jpg">'
                 )
-            } 
-            
-        }) 
-        
-        
-    })   
-    
+            }
+        })
+    })
 }
 
 function cambiarInput() {
@@ -225,8 +195,7 @@ function cambiarInput() {
         const alerta = Swal.mixin({
         })
         alerta.fire({
-            title: '¿Quieres guardar los datos el elemento?',
-            icon: 'warning',
+            iconHtml: '<img src="./img/seguro.jpg">',
             showCancelButton: true,
             confirmButtonText: 'Guardar datos!',
             cancelButtonText: 'Cancelar!',
@@ -234,60 +203,42 @@ function cambiarInput() {
         }).then((result) => {
             if (result.isConfirmed) {
                 alerta.fire(
-                    'Se ha editado corractamente!',
-                    'Datos actualizados',
-                    'success'
+                    '<img src="./img/perfect.jpg">'
                 )
                 let id = fila.id;
-                
                 let formdata = new FormData();
-
                 formdata.append('nombre', nombreInp);
                 formdata.append('desc', descInp);
                 formdata.append('numSer', numSerInp);
                 formdata.append('estado', estadoInp);
-                formdata.append('igual',igualInp);
-                
+                formdata.append('igual', igualInp);
                 console.log(formdata);
                 fetch(`./ws/modifyElements.php?id=${id}`, {
                     method: 'POST',
                     body: formdata,
                 })
-                .then(response => response.json())
-                .then(data => {
-                    console.log(data);
-                })
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log(data);
+                    })
             } else if (
-                result.dismiss === Swal.DismissReason.cancel,
-                resetGgDos()
+                result.dismiss === Swal.DismissReason.cancel
             ) {
                 alerta.fire(
-                    'Cancelado',
-                    ':)',
-                    'error'
+                    '<img src="./img/gallina.jpg">',
+                    resetGgDosT()
                 )
-            } 
+            }
         })
-
-
- //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         const botonX = document.getElementById('botonX');
         const botonEdit = document.getElementById('botonEdit');
-        
         botonX.onclick = () => {
             let id = fila.id;
             const alerta = Swal.mixin({
-                /* customClass: {
-                    confirmButton: 'btn btn-success',
-                    cancelButton: 'btn btn-danger'
-                },
-                buttonsStyling: false */
             })
             alerta.fire({
-                title: '¿Estas seguro?',
-                text: "¿Quieres borrar el elmento?",
-                icon: 'warning',
+                iconHtml: '<img src="./img/seguro.jpg">',
                 showCancelButton: true,
                 confirmButtonText: 'Borrar!',
                 cancelButtonText: 'Cancelar!',
@@ -295,45 +246,44 @@ function cambiarInput() {
             }).then((result) => {
                 if (result.isConfirmed) {
                     alerta.fire(
-                        'Borrado!',
-                        'El elemento ha sido borrado',
-                        'success'
+                        '<img src="./img/perfect.jpg">'
                     )
                     fetch(`./ws/deleteElement.php?id=${id}`, {
                         method: 'DELETE',
                     })
-                    .then(response => response.json())
-                    .then(data => {
-                        console.log(data);
-                        fila.remove();
-                    })
-                }  else if (
+                        .then(response => response.json())
+                        .then(data => {
+                            console.log(data);
+                            fila.remove();
+                        })
+                } else if (
                     result.dismiss === Swal.DismissReason.cancel
                 ) {
                     alerta.fire(
-                        'Cancelado',
-                        ':)',
-                        'error'
+                        '<img src="./img/gallina.jpg">',
+                        resetGgDosT()
                     )
-                } 
+                }
             })
-            
         };
         botonEdit.onclick = cambiarInput;
     })
 }
 
-
 function resetGG() {
-    setTimeout(function(){
+    setTimeout(function () {
         window.location.reload();
-     }, 1500);
+    }, 2000);
 }
-
 function resetGgDos() {
-    setTimeout(function(){
+    setTimeout(function () {
         window.location.reload();
     });
+}
+function resetGgDosT() {
+    setTimeout(function () {
+        window.location.reload();
+    }, 1500);
 }
 
 
@@ -349,7 +299,7 @@ function resetGgDos() {
         //console.log(e.target.value); -> Saca por consola lo que le meto al input
         claseA.forEach(datos => {
             buscadorInput = (e.target.value).toLowerCase();
-            //BUSCA A PARTIR DE LA TERCERA 
+            //BUSCA A PARTIR DE LA TERCERA
             if (buscadorInput.length >= 3) {
                 for (let i = 0; i < elementos.length; i++) {
                     //Con la función includes comprobamos si una cadena está dentro de otra, con eso hacemos la comparación
